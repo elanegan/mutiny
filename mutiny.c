@@ -3,6 +3,8 @@
 #include <string.h>
 #include <panel.h>
 
+#include "./ship.h"
+
 #define BUFFER_SIZE 32
 
 #define COLOR_BROWN 8
@@ -19,9 +21,6 @@ void setupColors();
 void displaySprite(WINDOW* localWin, int yPos, int xPos, char* fileName, int colPair);
 
 int main(int argc, char* argv[]) {
-    WINDOW* mainWindow;
-    WINDOW* infoWindow;
-    WINDOW* wheelWindow;
 
     WINDOW* windows[3];
     PANEL* panels[3];
