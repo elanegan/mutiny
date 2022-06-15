@@ -3,6 +3,7 @@
 #include <string.h>
 #include <panel.h>
 
+#define BUFFER_SIZE 32
 #define BACKGROUND_PAIR 0
 #define MAP_BORDER_PAIR 1
 #define SEA_PAIR 2
@@ -12,6 +13,7 @@
 WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair);
 void destroyWindow(WINDOW* localWin);
 void setupColors();
+void displaySprite(WINDOW* localWin, int yPos, int xPos, char* fileName);
 
 int main(int argc, char* argv[]) {
     WINDOW* mainWindow;
@@ -26,6 +28,7 @@ int main(int argc, char* argv[]) {
     // initialisation
     initscr();
     cbreak();
+    noecho();
     curs_set(0);
     keypad(stdscr, TRUE);
     setupColors();
@@ -46,13 +49,14 @@ int main(int argc, char* argv[]) {
       ' `-./   ,'
           / ```
 */
-    int boatx = 75;
-    mvwprintw(windows[0], 10, boatx, "%%--.../    ,");
+    /* mvwprintw(windows[0], 10, boatx, "%%--.../    ,");
     mvwprintw(windows[0], 11, boatx, "\\    /`-. /");
     mvwprintw(windows[0], 12, boatx, " \\  /@   /`.");
     mvwprintw(windows[0], 13, boatx, "  `/    @   )");
     mvwprintw(windows[0], 14, boatx, "  ' `-./   ,'");
-    mvwprintw(windows[0], 15, boatx, "      / ```");
+    mvwprintw(windows[0], 15, boatx, "      / ```"); */
+
+    displaySprite(windows[0], 10, 75, "./assets/ship");
 
     // updates
     update_panels();
@@ -95,6 +99,25 @@ void setupColors() {
     init_pair(WHEEL_PAIR, COLOR_YELLOW, COLOR_BLACK);
 }
 
-void setupWindows() {
+void displaySprite(WINDOW* localWin, int yPos, int xPos, char* fileName) {
+    FILE* fileHandle = fopen("./assets/ship", "r");
+    if (fileHandle == NULL) {
+        printw("Unable to open file.\n");
+        return;
+    }
     
+    char line[BUFFER_SIZE];
+    char* result;
+
+    int yPosition = yPos;
+    result = fgets(line, BUFFER_SIZE, fileHandle);
+    line[strcspn(line, "\n")] = 0;
+    while (result != NULL) {
+        mvwprintw(localWin, yPosition, xPos, "%s", result);
+        yPosition++;
+        result = fgets(line, BUFFER_SIZE, fileHandle);
+        line[strcspn(line, "\n")] = 0;
+    }
+
+    fclose(fileHandle);
 }
