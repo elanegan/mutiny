@@ -19,6 +19,7 @@ WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair
 void destroyWindow(WINDOW* localWin);
 void setupColors();
 void displaySprite(WINDOW* localWin, Ship* localShip, int colPair);
+void displayPlayerInfo(WINDOW* localWin, Ship* localShip);
 
 int main(int argc, char* argv[]) {
 
@@ -53,6 +54,11 @@ int main(int argc, char* argv[]) {
 
     // display changing ship sprite
     while (ch != KEY_F(1)) {
+        displayPlayerInfo(windows[1], playerShip);
+        mvwprintw(windows[2], 2, 2, "Turn: %d; ", getTurnLevel(playerShip));
+        update_panels();
+        doupdate();
+
         ch = getch();
         switch(ch) {
             case(KEY_RIGHT):
@@ -62,7 +68,7 @@ int main(int argc, char* argv[]) {
                 incPortTurn(playerShip);
                 break;
         }
-        mvwprintw(windows[2], 2, 2, "Turn: %d; ", getTurnLevel(playerShip));
+
         update_panels();
         doupdate();
     }
@@ -131,4 +137,14 @@ void displaySprite(WINDOW* localWin, Ship* localShip, int colPair) {
     }
 
     fclose(fileHandle);
+}
+
+void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {
+    char sailsText[16] = {"DOWN"};
+    if(getSailStat(localShip))
+        strcpy(sailsText, "OPEN");
+    
+    mvwprintw(localWin, 2, 2, "Health: %1f  ", getHealth(localShip));
+    mvwprintw(localWin, 4, 2, "Speed: %1f", getVelocity(localShip));
+    mvwprintw(localWin, 6, 2, "Sails: %s", sailsText);
 }
