@@ -1,6 +1,16 @@
 #ifndef SHIP
 #include <math.h>
 #define SHIP
+//define compass directions
+#define SHIP_NORTH 0
+#define SHIP_NORTH_WEST 1
+#define SHIP_WEST 2
+#define SHIP_SOUTH_WEST 3
+#define SHIP_SOUTH 4
+#define SHIP_SOUTH_EAST 5
+#define SHIP_EAST 6
+#define SHIP_NORTH_EAST 7
+
     typedef struct Ship {
         int id; // unique identifier. player is 0.
         double health; //health, from 0-100.
@@ -11,10 +21,10 @@
         int turnLevel; // the turn level that the player controls
         int sailsOpen; // whether the sails are open
         double firingSpeed; // how fast the ship fires
-        char* spritePath; // the path to the set of sprites to be used
+        char spritePath[16]; // the path to the set of sprites to be used
     } Ship;
 
-    Ship* createNewShip(int identifier, double initX, double initY) {
+    Ship* createNewShip(int identifier, double initY, double initX) {
         Ship* ship = malloc(sizeof(Ship));
         ship->id = identifier;
         ship->health = 100.0;
@@ -25,7 +35,9 @@
         ship->turnLevel = 0;
         ship->firingSpeed = 1.0;
         ship->sailsOpen = 1;
-        ship->spritePath = "./assets/ship0";
+        strcpy(ship->spritePath, "./assets/ship0");
+
+        return(ship);
     }
 
     void setHealth(Ship* localShip, double newHealth) {
@@ -105,11 +117,28 @@
     }
 
     void setSpritePath(Ship* localShip, char* newPath) {
-        localShip->spritePath = newPath;
+        strcpy(localShip->spritePath, newPath);
     }
 
+    void setSpriteCompass(Ship* localShip, int orientation) {
+        if (orientation < 0 || orientation > 7)
+            return;
+        
+        char path[16];
+        //strcpy(path, localShip->spritePath);
+        printf("orientation: %d ", orientation);
+        snprintf(path, 16, "./assets/ship%d", orientation);
+        printf("newPath: %s ", path);
+        setSpritePath(localShip, path);
+        printf("localShip: %s ", localShip->spritePath);
+    }
+
+/*     void updateSprite(Ship* localShip) {
+
+    } */
+
     char* getSpritePath(Ship* localShip) {
-        return(localShip->spritePath);
+        return localShip->spritePath;
     }
 
 #endif

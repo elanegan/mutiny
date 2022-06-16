@@ -18,7 +18,7 @@
 WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair);
 void destroyWindow(WINDOW* localWin);
 void setupColors();
-void displaySprite(WINDOW* localWin, int yPos, int xPos, char* fileName, int colPair);
+void displaySprite(WINDOW* localWin, Ship* localShip, int colPair);
 
 int main(int argc, char* argv[]) {
 
@@ -48,22 +48,32 @@ int main(int argc, char* argv[]) {
     update_panels();
     doupdate();
 
+    Ship* newship = createNewShip(0, 25, 75);
+    printw("newship: %s", newship->spritePath);
+
     // display changing ship sprite
-    int shipNum = 0;
-    char shipNames[15];
     while (ch != KEY_F(1)) {
         ch = getch();
         switch(ch) {
             case(KEY_UP):
-                snprintf(shipNames, 15, "./assets/ship%d", shipNum);
-                displaySprite(windows[0], 10, 75, shipNames, SHIP_PAIR);
-                shipNum++;
-                if (shipNum > 7)
-                    shipNum = 0;
-                // updates
-                update_panels();
-                doupdate();
+                setSpriteCompass(newship, SHIP_NORTH);
+                displaySprite(windows[0], newship, SHIP_PAIR);
+                break;
+            case(KEY_RIGHT):
+                setSpriteCompass(newship, SHIP_EAST);
+                displaySprite(windows[0], newship, SHIP_PAIR);
+                break;
+            case(KEY_DOWN):
+                setSpriteCompass(newship, SHIP_SOUTH);
+                displaySprite(windows[0], newship, SHIP_PAIR);
+                break;
+            case(KEY_LEFT):
+                setSpriteCompass(newship, SHIP_WEST);
+                displaySprite(windows[0], newship, SHIP_PAIR);
+                break;
         }
+        update_panels();
+        doupdate();
     }
     endwin();
 
@@ -103,7 +113,14 @@ void setupColors() {
     init_pair(SHIP_PAIR, COLOR_BROWN, COLOR_BLUE);
 }
 
-void displaySprite(WINDOW* localWin, int yPos, int xPos, char* fileName, int colPair) {
+void displaySprite(WINDOW* localWin, Ship* localShip, int colPair) {
+    char fileName[16];
+    printw("%s", localShip->spritePath);
+    strcpy(fileName, localShip->spritePath);
+    printw("fileName: %s ", fileName);
+    int xPosition = getXPosition(localShip);
+    int yPosition = getYPosition(localShip);
+
     FILE* fileHandle = fopen(fileName, "r");
     if (fileHandle == NULL) {
         printw("Unable to open file.\n");
@@ -113,12 +130,11 @@ void displaySprite(WINDOW* localWin, int yPos, int xPos, char* fileName, int col
     char line[BUFFER_SIZE];
     char* result;
 
-    int yPosition = yPos;
     result = fgets(line, BUFFER_SIZE, fileHandle);
     line[strcspn(line, "\n")] = 0;
     while (result != NULL) {
         wattron(localWin, COLOR_PAIR(colPair));
-        mvwprintw(localWin, yPosition, xPos, "%s", result);
+        mvwprintw(localWin, yPosition, xPosition, "%s", result);
         wattroff(localWin, COLOR_PAIR(colPair));
         yPosition++;
         result = fgets(line, BUFFER_SIZE, fileHandle);
