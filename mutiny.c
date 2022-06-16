@@ -49,17 +49,19 @@ int main(int argc, char* argv[]) {
     doupdate();
 
     Ship* newship = createNewShip(0, 25, 75);
-    printw("newship: %s", newship->spritePath);
 
+    double deg = 0;
     // display changing ship sprite
     while (ch != KEY_F(1)) {
         ch = getch();
         switch(ch) {
             case(KEY_UP):
-                setSpriteCompass(newship, SHIP_NORTH);
+                deg += 10;
+                setDirection(newship, (deg*(M_PI/180)));
+                updateSprite(newship);
                 displaySprite(windows[0], newship, SHIP_PAIR);
                 break;
-            case(KEY_RIGHT):
+/*             case(KEY_RIGHT):
                 setSpriteCompass(newship, SHIP_EAST);
                 displaySprite(windows[0], newship, SHIP_PAIR);
                 break;
@@ -70,7 +72,7 @@ int main(int argc, char* argv[]) {
             case(KEY_LEFT):
                 setSpriteCompass(newship, SHIP_WEST);
                 displaySprite(windows[0], newship, SHIP_PAIR);
-                break;
+                break; */
         }
         update_panels();
         doupdate();
@@ -115,9 +117,7 @@ void setupColors() {
 
 void displaySprite(WINDOW* localWin, Ship* localShip, int colPair) {
     char fileName[16];
-    printw("%s", localShip->spritePath);
     strcpy(fileName, localShip->spritePath);
-    printw("fileName: %s ", fileName);
     int xPosition = getXPosition(localShip);
     int yPosition = getYPosition(localShip);
 

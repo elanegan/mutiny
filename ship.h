@@ -125,20 +125,35 @@
             return;
         
         char path[16];
-        //strcpy(path, localShip->spritePath);
-        printf("orientation: %d ", orientation);
         snprintf(path, 16, "./assets/ship%d", orientation);
-        printf("newPath: %s ", path);
         setSpritePath(localShip, path);
-        printf("localShip: %s ", localShip->spritePath);
     }
-
-/*     void updateSprite(Ship* localShip) {
-
-    } */
 
     char* getSpritePath(Ship* localShip) {
         return localShip->spritePath;
+    }
+
+    void updateSprite(Ship* localShip) {
+        double orientation = getDirection(localShip);
+
+        if (orientation < 0 || orientation > 2*M_PI)
+            return;
+        else if (orientation < M_PI/4)
+            setSpriteCompass(localShip, SHIP_NORTH);
+        else if (orientation < M_PI/2)
+            setSpriteCompass(localShip, SHIP_NORTH_EAST);
+        else if (orientation < (3*M_PI)/4)
+            setSpriteCompass(localShip, SHIP_EAST);
+        else if (orientation < M_PI)
+            setSpriteCompass(localShip, SHIP_SOUTH_EAST);
+        else if (orientation < (5*M_PI)/4)
+            setSpriteCompass(localShip, SHIP_SOUTH);
+        else if (orientation < (3*M_PI)/2)
+            setSpriteCompass(localShip, SHIP_SOUTH_WEST);
+        else if (orientation < (7*M_PI)/4)
+            setSpriteCompass(localShip, SHIP_WEST);
+        else if (orientation < 2*M_PI)
+            setSpriteCompass(localShip, SHIP_NORTH_WEST);
     }
 
 #endif
