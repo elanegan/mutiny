@@ -14,6 +14,8 @@
 #define INFO_PAIR 3
 #define WHEEL_PAIR 4
 #define SHIP_PAIR 5
+#define NEGATIVE 6
+#define POSITIVE 7
 
 WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair);
 void destroyWindow(WINDOW* localWin);
@@ -67,10 +69,10 @@ int main(int argc, char* argv[]) {
             case(KEY_LEFT):
                 incPortTurn(playerShip);
                 break;
+            case('7'):
+                switchSails(playerShip);
+                break;
         }
-
-        update_panels();
-        doupdate();
     }
     endwin();
 
@@ -108,6 +110,8 @@ void setupColors() {
     init_pair(INFO_PAIR, COLOR_BLUE, COLOR_BLACK);
     init_pair(WHEEL_PAIR, COLOR_YELLOW, COLOR_BLACK);
     init_pair(SHIP_PAIR, COLOR_BROWN, COLOR_BLUE);
+    init_pair(NEGATIVE, COLOR_RED, COLOR_BLACK);
+    init_pair(POSITIVE, COLOR_GREEN, COLOR_BLACK);
 }
 
 void displaySprite(WINDOW* localWin, Ship* localShip, int colPair) {
@@ -139,12 +143,18 @@ void displaySprite(WINDOW* localWin, Ship* localShip, int colPair) {
     fclose(fileHandle);
 }
 
-void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {
-    char sailsText[16] = {"DOWN"};
-    if(getSailStat(localShip))
-        strcpy(sailsText, "OPEN");
-    
-    mvwprintw(localWin, 2, 2, "Health: %1f  ", getHealth(localShip));
-    mvwprintw(localWin, 4, 2, "Speed: %1f", getVelocity(localShip));
-    mvwprintw(localWin, 6, 2, "Sails: %s", sailsText);
+void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {    
+    mvwprintw(localWin, 2, 2, "Health: %.1f  ", getHealth(localShip));
+    mvwprintw(localWin, 4, 2, "Speed: %.1f", getVelocity(localShip));
+
+    if(getSailStat(localShip)) {
+        wattron(localWin, COLOR_PAIR(POSITIVE));
+        mvwprintw(localWin, 6, 2, "Sails: OPEN");
+        wattroff(localWin, COLOR_PAIR(POSITIVE));
+    }
+    else {
+        wattron(localWin, COLOR_PAIR(NEGATIVE));
+        mvwprintw(localWin, 6, 2, "Sails: DOWN");
+        wattroff(localWin, COLOR_PAIR(NEGATIVE));
+    }
 }
