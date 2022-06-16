@@ -47,7 +47,8 @@ int main(int argc, char* argv[]) {
         panels[i] = new_panel(windows[i]);
     }
 
-    Ship* playerShip = createNewShip(0, 25, 75);
+    Ship* playerShip = createNewShip(0, 18, 70);
+
     displaySprite(windows[0], playerShip, SHIP_PAIR);
 
     // updates
@@ -56,6 +57,8 @@ int main(int argc, char* argv[]) {
 
     // display changing ship sprite
     while (ch != KEY_F(1)) {
+        updateSprite(playerShip);
+        displaySprite(windows[0], playerShip, SHIP_PAIR);
         displayPlayerInfo(windows[1], playerShip);
         mvwprintw(windows[2], 2, 2, "Turn: %d; ", getTurnLevel(playerShip));
         update_panels();
