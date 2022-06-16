@@ -44,36 +44,25 @@ int main(int argc, char* argv[]) {
         panels[i] = new_panel(windows[i]);
     }
 
+    Ship* playerShip = createNewShip(0, 25, 75);
+    displaySprite(windows[0], playerShip, SHIP_PAIR);
+
     // updates
     update_panels();
     doupdate();
 
-    Ship* newship = createNewShip(0, 25, 75);
-
-    double deg = 0;
     // display changing ship sprite
     while (ch != KEY_F(1)) {
         ch = getch();
         switch(ch) {
-            case(KEY_UP):
-                deg += 10;
-                setDirection(newship, (deg*(M_PI/180)));
-                updateSprite(newship);
-                displaySprite(windows[0], newship, SHIP_PAIR);
-                break;
-/*             case(KEY_RIGHT):
-                setSpriteCompass(newship, SHIP_EAST);
-                displaySprite(windows[0], newship, SHIP_PAIR);
-                break;
-            case(KEY_DOWN):
-                setSpriteCompass(newship, SHIP_SOUTH);
-                displaySprite(windows[0], newship, SHIP_PAIR);
+            case(KEY_RIGHT):
+                incStarboardTurn(playerShip);
                 break;
             case(KEY_LEFT):
-                setSpriteCompass(newship, SHIP_WEST);
-                displaySprite(windows[0], newship, SHIP_PAIR);
-                break; */
+                incPortTurn(playerShip);
+                break;
         }
+        mvwprintw(windows[2], 2, 2, "Turn: %d; ", getTurnLevel(playerShip));
         update_panels();
         doupdate();
     }
