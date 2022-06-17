@@ -20,8 +20,9 @@
 WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair);
 void destroyWindow(WINDOW* localWin);
 void setupColors();
-void displaySprite(WINDOW* localWin, Ship* localShip, int colPair);
+void displaySprite(WINDOW* localWin, int xPosition, int yPosition, char fileName[], int colPair);
 void displayPlayerInfo(WINDOW* localWin, Ship* localShip);
+void displayShip(WINDOW* localWin, Ship* localShip);
 
 int main(int argc, char* argv[]) {
 
@@ -49,7 +50,7 @@ int main(int argc, char* argv[]) {
 
     Ship* playerShip = createNewShip(0, 18, 70);
 
-    displaySprite(windows[0], playerShip, SHIP_PAIR);
+    displayShip(windows[0], playerShip);
 
     // updates
     update_panels();
@@ -58,7 +59,7 @@ int main(int argc, char* argv[]) {
     // display changing ship sprite
     while (ch != KEY_F(1)) {
         updateSprite(playerShip);
-        displaySprite(windows[0], playerShip, SHIP_PAIR);
+        displayShip(windows[0], playerShip);
         displayPlayerInfo(windows[1], playerShip);
         mvwprintw(windows[2], 2, 2, "Turn: %d; ", getTurnLevel(playerShip));
         update_panels();
@@ -117,11 +118,9 @@ void setupColors() {
     init_pair(POSITIVE, COLOR_GREEN, COLOR_BLACK);
 }
 
-void displaySprite(WINDOW* localWin, Ship* localShip, int colPair) {
-    char fileName[16];
-    strcpy(fileName, localShip->spritePath);
-    int xPosition = getXPosition(localShip);
-    int yPosition = getYPosition(localShip);
+void displaySprite(WINDOW* localWin, int xPos, int yPos, char fileName[], int colPair) {
+    int yPosition = xPos;
+    int xPosition = yPos;
 
     FILE* fileHandle = fopen(fileName, "r");
     if (fileHandle == NULL) {
@@ -160,4 +159,13 @@ void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {
         mvwprintw(localWin, 6, 2, "Sails: DOWN");
         wattroff(localWin, COLOR_PAIR(NEGATIVE));
     }
+}
+
+void displayShip(WINDOW* seaWindow, Ship* localShip) {
+    char sprite[64];
+    strcpy(sprite, localShip->spritePath);
+    int xPos = (int)getXPosition(localShip);
+    int yPos = (int)getYPosition(localShip);
+
+    displaySprite(seaWindow, yPos, xPos, sprite, SHIP_PAIR);
 }
