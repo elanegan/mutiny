@@ -1,5 +1,6 @@
 #ifndef SHIP
 #include <math.h>
+#include <string.h>
 #define SHIP
 //define compass directions
 #define SHIP_NORTH 0
@@ -21,7 +22,7 @@
         int turnLevel; // the turn level that the player controls
         int sailsOpen; // whether the sails are open
         double firingSpeed; // how fast the ship fires
-        char spritePath[16]; // the path to the set of sprites to be used
+        char spritePath[64]; // the path to the set of sprites to be used
     } Ship;
 
     Ship* createNewShip(int identifier, double initY, double initX) {
@@ -35,7 +36,7 @@
         ship->turnLevel = 0;
         ship->firingSpeed = 1.0;
         ship->sailsOpen = 1;
-        strcpy(ship->spritePath, "./assets/ship0");
+        strcpy(ship->spritePath, "./assets/ship/sailOpen/ship0");
 
         return(ship);
     }
@@ -124,8 +125,12 @@
         if (orientation < 0 || orientation > 7)
             return;
         
-        char path[16];
-        snprintf(path, 16, "./assets/ship%d", orientation);
+        char path[64];
+        char openClose[16] = {"sailDown/"};
+        if(getSailStat(localShip))
+            strcpy(openClose, "sailOpen/");
+
+        snprintf(path, 64, "./assets/ship/%sship%d", openClose, orientation);
         setSpritePath(localShip, path);
     }
 
