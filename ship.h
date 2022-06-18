@@ -18,7 +18,8 @@
         double xPosition; // x position in the game
         double yPosition; // y position in the game
         double direction; // angle of direction of travel, 0-2pi or degrees?
-        double velocity; // speed of the ship
+        double xVelocity; // x velocity of the ship across the map
+        double yVelocity; //y velocity of the ship across the map
         int turnLevel; // the turn level that the player controls
         int sailsOpen; // whether the sails are open
         double firingSpeed; // how fast the ship fires
@@ -32,7 +33,8 @@
         ship->xPosition = initX;
         ship->yPosition = initY;
         ship->direction = 0.0;
-        ship->velocity = 0.0;
+        ship->xVelocity = 0.0;
+        ship->yVelocity = 0.0;
         ship->turnLevel = 0;
         ship->firingSpeed = 1.0;
         ship->sailsOpen = 1;
@@ -79,12 +81,28 @@
         return(localShip->direction);
     }
 
-    void setVelocity(Ship* localShip, double newVelocity) {
-        localShip->velocity = newVelocity;
+    void setXVelocity(Ship* localShip, double newVelocity) {
+        localShip->xVelocity = newVelocity;
     }
 
-    double getVelocity(Ship* localShip) {
-        return(localShip->velocity);
+    double getXVelocity(Ship* localShip) {
+        return(localShip->xVelocity);
+    }
+
+    void setYVelocity(Ship* localShip, double newVelocity) {
+        localShip->yVelocity = newVelocity;
+    }
+
+    double getYVelocity(Ship* localShip) {
+        return(localShip->yVelocity);
+    }
+
+    double getSpeed(Ship* localShip) {
+        double xSpeed = fabs(getXVelocity(localShip));
+        double ySpeed = fabs(getYVelocity(localShip));
+        double speed = sqrt((xSpeed*xSpeed) + (ySpeed*ySpeed));
+
+        return speed;
     }
 
     // Port = left turn

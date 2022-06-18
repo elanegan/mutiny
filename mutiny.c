@@ -147,7 +147,7 @@ void displaySprite(WINDOW* localWin, int xPos, int yPos, char fileName[], int co
 
 void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {    
     mvwprintw(localWin, 2, 2, "Health: %.1f  ", getHealth(localShip));
-    mvwprintw(localWin, 4, 2, "Speed: %.1f", getVelocity(localShip));
+    mvwprintw(localWin, 4, 2, "Speed: %.1f", getSpeed(localShip));
 
     if(getSailStat(localShip)) {
         wattron(localWin, COLOR_PAIR(POSITIVE));
