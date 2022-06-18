@@ -20,7 +20,7 @@
 WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair);
 void destroyWindow(WINDOW* localWin);
 void setupColors();
-void displaySprite(WINDOW* localWin, int xPosition, int yPosition, char fileName[], int colPair);
+void displaySprite(WINDOW* localWin, int yPos, int xPos, char fileName[], int colPair);
 void displayPlayerInfo(WINDOW* localWin, Ship* localShip);
 void displayShip(WINDOW* localWin, Ship* localShip);
 
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
         panels[i] = new_panel(windows[i]);
     }
 
-    Ship* playerShip = createNewShip(0, 18, 70);
+    Ship* playerShip = createNewShip(0, 70, 18);
 
     displayShip(windows[0], playerShip);
 
@@ -118,7 +118,7 @@ void setupColors() {
     init_pair(POSITIVE, COLOR_GREEN, COLOR_BLACK);
 }
 
-void displaySprite(WINDOW* localWin, int xPos, int yPos, char fileName[], int colPair) {
+void displaySprite(WINDOW* localWin, int yPos, int xPos, char fileName[], int colPair) {
     int yPosition = xPos;
     int xPosition = yPos;
 
