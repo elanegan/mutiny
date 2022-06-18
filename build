@@ -1,0 +1,1 @@
+gcc ./mutiny.c -o ./mutiny -lncurses -lpanel -lm
