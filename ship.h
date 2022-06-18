@@ -41,6 +41,10 @@
         return(ship);
     }
 
+    void destroyShip(Ship* localShip) {
+        free(localShip);
+    }
+
     void setHealth(Ship* localShip, double newHealth) {
         localShip->health = newHealth;
     }
