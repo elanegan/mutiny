@@ -44,14 +44,17 @@ int main(int argc, char* argv[]) {
     // set up windows and panels
     windows[0] = createNewWindow(50, 150, 4, 4, SEA_PAIR);
     windows[1] = createNewWindow(11, 34, 4, 156, INFO_PAIR);
-    windows[2] = createNewWindow(14, 50, 29, 156, WHEEL_PAIR);
+    windows[2] = createNewWindow(25, 50, 29, 156, WHEEL_PAIR);
 
     for (int i = 0; i < 3; i++) {
         panels[i] = new_panel(windows[i]);
     }
 
-    // display steering wheel
-    displaySprite(windows[2], 8, 16, "./assets/wheel", WHEEL_PAIR);
+    // display steering wheel in centre of wheel screen
+    int wheelMaxX, wheelMaxY;
+    getmaxyx(windows[2], wheelMaxY, wheelMaxX);
+
+    displaySprite(windows[2], (wheelMaxY/2)-4, (wheelMaxX/2)-8, "./assets/wheel", WHEEL_PAIR);
 
     // display player ship in centre of the main playing screen
     int seaMaxX, seaMaxY;
@@ -205,39 +208,41 @@ void displayShip(WINDOW* seaWindow, Ship* localShip) {
 
 void displayTurnStat(WINDOW* wheelWindow, Ship* player) {
     int turnLevel = getTurnLevel(player);
+    int maxX, maxY;
+    getmaxyx(wheelWindow, maxY, maxX);
 
     // reset
-    mvwprintw(wheelWindow, 17, 17, " ");
-    mvwprintw(wheelWindow, 12, 14, " ");
-    mvwprintw(wheelWindow, 7, 17, " ");
-    mvwprintw(wheelWindow, 6, 24, " ");
-    mvwprintw(wheelWindow, 7, 31, " ");
-    mvwprintw(wheelWindow, 12, 34, " ");
-    mvwprintw(wheelWindow, 17, 31, " ");
+    mvwprintw(wheelWindow, (maxY/2)+5, (maxX/2)-6, " ");
+    mvwprintw(wheelWindow, (maxY/2), (maxX/2)-10, " ");
+    mvwprintw(wheelWindow, (maxY/2)-5, (maxX/2)-6, " ");
+    mvwprintw(wheelWindow, (maxY/2)-6, (maxX/2), " ");
+    mvwprintw(wheelWindow, (maxY/2)-5, (maxX/2)+6, " ");
+    mvwprintw(wheelWindow, (maxY/2), (maxX/2)+10, " ");
+    mvwprintw(wheelWindow, (maxY/2)+5, (maxX/2)+6, " ");
     
     // replace
     wattron(wheelWindow, A_BOLD);
     switch(turnLevel) {
         case(-3):
-            mvwprintw(wheelWindow, 17, 17, "#");
+            mvwprintw(wheelWindow, (maxY/2)+5, (maxX/2)-6, "#");
             break;
         case(-2):
-            mvwprintw(wheelWindow, 12, 14, "#");
+            mvwprintw(wheelWindow, (maxY/2), (maxX/2)-10, "#");
             break;
         case(-1):
-            mvwprintw(wheelWindow, 7, 17, "#");
+            mvwprintw(wheelWindow, (maxY/2)-5, (maxX/2)-6, "#");
             break;
         case(0):
-            mvwprintw(wheelWindow, 6, 24, "#");
+            mvwprintw(wheelWindow, (maxY/2)-6, (maxX/2), "#");
             break;
         case(1):
-            mvwprintw(wheelWindow, 7, 31, "#");
+            mvwprintw(wheelWindow, (maxY/2)-5, (maxX/2)+6, "#");
             break;
         case(2):
-            mvwprintw(wheelWindow, 12, 34, "#");
+            mvwprintw(wheelWindow, (maxY/2), (maxX/2)+10, "#");
             break;
         case(3):
-            mvwprintw(wheelWindow, 17, 31, "#");
+            mvwprintw(wheelWindow, (maxY/2)+5, (maxX/2)+6, "#");
             break;
     }
     wattroff(wheelWindow, A_BOLD);
