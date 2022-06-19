@@ -53,13 +53,11 @@ int main(int argc, char* argv[]) {
     // display steering wheel
     displaySprite(windows[2], 8, 16, "./assets/wheel", WHEEL_PAIR);
 
-    Ship* playerShip = createNewShip(0, 70, 18);
-
+    // display player ship in centre of the main playing screen
     int seaMaxX, seaMaxY;
     getmaxyx(windows[0], seaMaxY, seaMaxX);
-    printw("%d %d, ", (seaMaxY/2)-8, (seaMaxX/2)-16);
-
-    displaySprite(windows[0], (seaMaxY/2)-4, (seaMaxX/2)-8, getSpritePath(playerShip), SHIP_PAIR);
+    Ship* playerShip = createNewShip(0, 500, 500, (seaMaxY/2), (seaMaxX/2));
+    displayShip(windows[0], playerShip);
 
     // updates
     update_panels();
@@ -68,7 +66,7 @@ int main(int argc, char* argv[]) {
     // display changing ship sprite
     while (ch != KEY_F(1)) {
         updateSprite(playerShip);
-        displaySprite(windows[0], (seaMaxY/2)-4, (seaMaxX/2)-8, getSpritePath(playerShip), SHIP_PAIR);
+        displayShip(windows[0], playerShip);
         displayPlayerInfo(windows[1], playerShip);
         displayTurnStat(windows[2], playerShip);
         update_panels();
@@ -197,8 +195,10 @@ void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {
 void displayShip(WINDOW* seaWindow, Ship* localShip) {
     char sprite[64];
     strcpy(sprite, localShip->spritePath);
-    int xPos = (int)getXPosition(localShip);
-    int yPos = (int)getYPosition(localShip);
+
+    // get relative position to place on screen, and shift for sprite size
+    int xPos = getDisplayXPosition(localShip)-8;
+    int yPos = getDisplayYPosition(localShip)-4;
 
     displaySprite(seaWindow, yPos, xPos, sprite, SHIP_PAIR);
 }

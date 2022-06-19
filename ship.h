@@ -15,8 +15,10 @@
     typedef struct Ship {
         int id; // unique identifier. player is 0.
         double health; //health, from 0-100.
-        double xPosition; // x position in the game
-        double yPosition; // y position in the game
+        double xPosition; // x position on the game map
+        double yPosition; // y position on the game map
+        int displayXPosition; // x position on the display screen
+        int displayYPosition; // y position on the display screen
         double direction; // angle of direction of travel, 0-2pi or degrees?
         double xVelocity; // x velocity of the ship across the map
         double yVelocity; //y velocity of the ship across the map
@@ -26,12 +28,14 @@
         char spritePath[64]; // the path to the set of sprites to be used
     } Ship;
 
-    Ship* createNewShip(int identifier, double initY, double initX) {
+    Ship* createNewShip(int identifier, double mapY, double mapX, int screenY, int screenX) {
         Ship* ship = malloc(sizeof(Ship));
         ship->id = identifier;
         ship->health = 100.0;
-        ship->xPosition = initX;
-        ship->yPosition = initY;
+        ship->xPosition = mapX;
+        ship->yPosition = mapY;
+        ship->displayXPosition = screenX;
+        ship->displayYPosition = screenY;
         ship->direction = 0.0;
         ship->xVelocity = 0.0;
         ship->yVelocity = 0.0;
@@ -69,6 +73,22 @@
 
     double getYPosition(Ship* localShip) {
         return(localShip->yPosition);
+    }
+
+    void setDisplayXPosition(Ship* localShip, int newXPosition) {
+        localShip->displayXPosition = newXPosition;
+    }
+
+    int getDisplayXPosition(Ship* localShip) {
+        return(localShip->displayXPosition);
+    }
+
+    void setDisplayYPosition(Ship* localShip, int newYPosition) {
+        localShip->displayYPosition = newYPosition;
+    }
+
+    int getDisplayYPosition(Ship* localShip) {
+        return(localShip->displayYPosition);
     }
 
     void setDirection(Ship* localShip, double newDirection) {
