@@ -23,6 +23,7 @@ void setupColors();
 void displaySprite(WINDOW* localWin, int yPos, int xPos, char fileName[], int colPair);
 void displayPlayerInfo(WINDOW* localWin, Ship* localShip);
 void displayShip(WINDOW* localWin, Ship* localShip);
+void displayTurnStat(WINDOW* wheelWindow, Ship* player);
 
 int main(int argc, char* argv[]) {
 
@@ -48,6 +49,9 @@ int main(int argc, char* argv[]) {
         panels[i] = new_panel(windows[i]);
     }
 
+    // display steering wheel
+    displaySprite(windows[2], 16, 8, "./assets/wheel", WHEEL_PAIR);
+
     Ship* playerShip = createNewShip(0, 70, 18);
 
     displayShip(windows[0], playerShip);
@@ -61,7 +65,7 @@ int main(int argc, char* argv[]) {
         updateSprite(playerShip);
         displayShip(windows[0], playerShip);
         displayPlayerInfo(windows[1], playerShip);
-        mvwprintw(windows[2], 2, 2, "Turn: %d; ", getTurnLevel(playerShip));
+        displayTurnStat(windows[2], playerShip);
         update_panels();
         doupdate();
 
@@ -168,4 +172,44 @@ void displayShip(WINDOW* seaWindow, Ship* localShip) {
     int yPos = (int)getYPosition(localShip);
 
     displaySprite(seaWindow, yPos, xPos, sprite, SHIP_PAIR);
+}
+
+void displayTurnStat(WINDOW* wheelWindow, Ship* player) {
+    int turnLevel = getTurnLevel(player);
+
+    // reset
+    mvwprintw(wheelWindow, 17, 17, " ");
+    mvwprintw(wheelWindow, 12, 14, " ");
+    mvwprintw(wheelWindow, 7, 17, " ");
+    mvwprintw(wheelWindow, 6, 24, " ");
+    mvwprintw(wheelWindow, 7, 31, " ");
+    mvwprintw(wheelWindow, 12, 34, " ");
+    mvwprintw(wheelWindow, 17, 31, " ");
+    
+    // replace
+    wattron(wheelWindow, A_BOLD);
+    switch(turnLevel) {
+        case(-3):
+            mvwprintw(wheelWindow, 17, 17, "#");
+            break;
+        case(-2):
+            mvwprintw(wheelWindow, 12, 14, "#");
+            break;
+        case(-1):
+            mvwprintw(wheelWindow, 7, 17, "#");
+            break;
+        case(0):
+            mvwprintw(wheelWindow, 6, 24, "#");
+            break;
+        case(1):
+            mvwprintw(wheelWindow, 7, 31, "#");
+            break;
+        case(2):
+            mvwprintw(wheelWindow, 12, 34, "#");
+            break;
+        case(3):
+            mvwprintw(wheelWindow, 17, 31, "#");
+            break;
+    }
+    wattroff(wheelWindow, A_BOLD);
 }
