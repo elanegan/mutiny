@@ -4,6 +4,7 @@
 #include <panel.h>
 
 #include "./ship.h"
+#include "./wind.h"
 
 #define BUFFER_SIZE 32
 
@@ -69,12 +70,17 @@ int main(int argc, char* argv[]) {
     Ship* playerShip = createNewShip(0, 500, 500, (seaMaxY/2), (seaMaxX/2));
     displayShip(windows[0], playerShip);
 
+    // create wind
+    Wind* wind = createNewWind();
+
     // updates
     update_panels();
     doupdate();
 
     // display changing ship sprite
     while (ch != KEY_F(1)) {
+        updateWind(wind);
+        mvwprintw(windows[1], 8, 2, "Wind: %.3f-%.3f ", getWindSpeed(wind), getWindDirection(wind));
         updateSprite(playerShip);
         displayShip(windows[0], playerShip);
         displayPlayerInfo(windows[1], playerShip);
