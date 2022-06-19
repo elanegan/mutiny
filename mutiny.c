@@ -16,6 +16,7 @@
 #define SHIP_PAIR 5
 #define NEGATIVE 6
 #define POSITIVE 7
+#define MEDIUM 8
 
 WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair);
 void destroyWindow(WINDOW* localWin);
@@ -119,6 +120,7 @@ void setupColors() {
     init_pair(WHEEL_PAIR, COLOR_YELLOW, COLOR_BLACK);
     init_pair(SHIP_PAIR, COLOR_BROWN, COLOR_BLUE);
     init_pair(NEGATIVE, COLOR_RED, COLOR_BLACK);
+    init_pair(MEDIUM, COLOR_YELLOW, COLOR_BLACK);
     init_pair(POSITIVE, COLOR_GREEN, COLOR_BLACK);
 }
 
@@ -149,9 +151,32 @@ void displaySprite(WINDOW* localWin, int yPos, int xPos, char fileName[], int co
     fclose(fileHandle);
 }
 
-void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {    
-    mvwprintw(localWin, 2, 2, "Health: %.1f  ", getHealth(localShip));
-    mvwprintw(localWin, 4, 2, "Speed: %.1f", getSpeed(localShip));
+void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {
+    int healthBarSize = (int) (getHealth(localShip)/5);
+
+    // start health bar
+    mvwprintw(localWin, 2, 2, "Health: [");
+
+    // set colour for health bar
+    if (healthBarSize > 14)
+        wattron(localWin, COLOR_PAIR(POSITIVE));
+    else if (healthBarSize > 7)
+        wattron(localWin, COLOR_PAIR(MEDIUM));
+    else if (healthBarSize > 0)
+        wattron(localWin, COLOR_PAIR(NEGATIVE));
+
+    // display health bar amount
+    for (int i = 0; i < healthBarSize; i++) {
+        mvwprintw(localWin, 2, (i+11), "#");
+    }
+    // switch off formatting
+    wattroff(localWin, COLOR_PAIR(POSITIVE));
+    wattroff(localWin, COLOR_PAIR(MEDIUM));
+    wattroff(localWin, COLOR_PAIR(NEGATIVE));
+    // end health bar
+    mvwprintw(localWin, 2, 31, "]");
+
+    mvwprintw(localWin, 4, 2, "Speed: %.1f Knots", getSpeed(localShip));
 
     if(getSailStat(localShip)) {
         wattron(localWin, COLOR_PAIR(POSITIVE));
