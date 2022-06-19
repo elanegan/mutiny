@@ -43,19 +43,23 @@ int main(int argc, char* argv[]) {
 
     // set up windows and panels
     windows[0] = createNewWindow(50, 150, 4, 4, SEA_PAIR);
-    windows[1] = createNewWindow(25, 50, 4, 156, INFO_PAIR);
-    windows[2] = createNewWindow(25, 50, 29, 156, WHEEL_PAIR);
+    windows[1] = createNewWindow(11, 34, 4, 156, INFO_PAIR);
+    windows[2] = createNewWindow(14, 50, 29, 156, WHEEL_PAIR);
 
     for (int i = 0; i < 3; i++) {
         panels[i] = new_panel(windows[i]);
     }
 
     // display steering wheel
-    displaySprite(windows[2], 16, 8, "./assets/wheel", WHEEL_PAIR);
+    displaySprite(windows[2], 8, 16, "./assets/wheel", WHEEL_PAIR);
 
     Ship* playerShip = createNewShip(0, 70, 18);
 
-    displayShip(windows[0], playerShip);
+    int seaMaxX, seaMaxY;
+    getmaxyx(windows[0], seaMaxY, seaMaxX);
+    printw("%d %d, ", (seaMaxY/2)-8, (seaMaxX/2)-16);
+
+    displaySprite(windows[0], (seaMaxY/2)-4, (seaMaxX/2)-8, getSpritePath(playerShip), SHIP_PAIR);
 
     // updates
     update_panels();
@@ -64,7 +68,7 @@ int main(int argc, char* argv[]) {
     // display changing ship sprite
     while (ch != KEY_F(1)) {
         updateSprite(playerShip);
-        displayShip(windows[0], playerShip);
+        displaySprite(windows[0], (seaMaxY/2)-4, (seaMaxX/2)-8, getSpritePath(playerShip), SHIP_PAIR);
         displayPlayerInfo(windows[1], playerShip);
         displayTurnStat(windows[2], playerShip);
         update_panels();
@@ -125,8 +129,8 @@ void setupColors() {
 }
 
 void displaySprite(WINDOW* localWin, int yPos, int xPos, char fileName[], int colPair) {
-    int yPosition = xPos;
-    int xPosition = yPos;
+    int yPosition = yPos;
+    int xPosition = xPos;
 
     FILE* fileHandle = fopen(fileName, "r");
     if (fileHandle == NULL) {
