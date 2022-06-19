@@ -41,10 +41,17 @@ int main(int argc, char* argv[]) {
     keypad(stdscr, TRUE);
     setupColors();
 
-    // set up windows and panels
-    windows[0] = createNewWindow(50, 150, 4, 4, SEA_PAIR);
-    windows[1] = createNewWindow(11, 34, 4, 156, INFO_PAIR);
-    windows[2] = createNewWindow(25, 50, 29, 156, WHEEL_PAIR);
+    // set up windows and panels with dynamic sizing
+    int scrX, scrY;
+    getmaxyx(stdscr, scrY, scrX);
+
+    int spacing = 3;
+    double availableX = scrX-(2*spacing);
+    double availableY = scrY-(2*spacing);
+
+    windows[0] = createNewWindow(availableY, (2*availableX)/3, spacing, spacing*2, SEA_PAIR);
+    windows[1] = createNewWindow((availableY/2)-spacing, (availableX/3)-(3*spacing), spacing, ((2*availableX)/3)+(3*spacing), INFO_PAIR);
+    windows[2] = createNewWindow(ceil(availableY/2), (availableX/3)-(3*spacing), (availableY/2)+spacing, ((2*availableX)/3)+(3*spacing), WHEEL_PAIR);
 
     for (int i = 0; i < 3; i++) {
         panels[i] = new_panel(windows[i]);
