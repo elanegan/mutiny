@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
     // display player ship in centre of the main playing screen
     int seaMaxX, seaMaxY;
     getmaxyx(windows[0], seaMaxY, seaMaxX);
-    Ship* playerShip = createNewShip(0, 500, 500, (seaMaxY/2), (seaMaxX/2));
+    Ship* playerShip = createNewShip(0, 0, 0, (seaMaxY/2), (seaMaxX/2));
     displayShip(windows[0], playerShip);
 
     // create wind
@@ -266,10 +266,10 @@ void displayTurnStat(WINDOW* wheelWindow, Ship* player) {
 
 void displayWindInfo(WINDOW* infoWindow, Wind* localWind) {
         double orientation = getWindDirection(localWind);
-        char text[16];
+        char text[16] = "!! ";
 
         if (orientation < 0 || orientation > 2*M_PI)
-            return;
+            strcpy(text, "!! ");
         else if (orientation < M_PI/4)
             strcpy(text, "N ");
         else if (orientation < M_PI/2)

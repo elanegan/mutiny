@@ -56,10 +56,8 @@
                 currentDirection -= M_PI/16;
         }
 
-        if (currentDirection > (2*M_PI))
+        if (currentDirection > (2*M_PI) || currentDirection < 0.0)
             currentDirection = 0.0;
-        else if (currentDirection < 0)
-            currentDirection = 2*M_PI;
         
         if (currentSpeed > 20) {
             currentSpeed = 19.8;
