@@ -41,6 +41,7 @@ int main(int argc, char* argv[]) {
     noecho();
     curs_set(0);
     keypad(stdscr, TRUE);
+    timeout(250);
     setupColors();
 
     // set up windows and panels with dynamic sizing
@@ -83,7 +84,7 @@ int main(int argc, char* argv[]) {
         updateWind(wind);
         sail(playerShip, wind);
         displayWindInfo(windows[1], wind);
-        mvwprintw(windows[1], 10, 2, "X: %.1f; Y: %.1f ", getXPosition(playerShip), getYPosition(playerShip));
+        mvwprintw(windows[1], 10, 2, "X: %.0f; Y: %.0f ", getXPosition(playerShip), getYPosition(playerShip));
         updateSprite(playerShip);
         displayShip(windows[0], playerShip);
         displayPlayerInfo(windows[1], playerShip);
