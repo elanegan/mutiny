@@ -1,6 +1,7 @@
 #ifndef SHIP
 #include <math.h>
 #include <string.h>
+#include "./wind.h"
 #define SHIP
 //define compass directions
 #define SHIP_NORTH 0
@@ -201,6 +202,35 @@
             setSpriteCompass(localShip, SHIP_WEST);
         else if (orientation < 2*M_PI)
             setSpriteCompass(localShip, SHIP_NORTH_WEST);
+    }
+
+    void sail(Ship* localShip, Wind* localWind) {
+        double shipSpeed = getSpeed(localShip);
+        int turnLevel = getTurnLevel(localShip);
+        double windSpeed = getWindSpeed(localWind);
+        double shipAngle = getDirection(localShip);
+        double windAngle = getWindDirection(localWind);
+        double xPos = getXPosition(localShip);
+        double yPos = getYPosition(localShip);
+
+        if (getSailStat(localShip)) {
+            shipSpeed += 1.5*(cos(windAngle-shipAngle));
+
+            //double approachAngle = (3*M_PI)/4 - (windAngle-shipAngle);
+            //shipAngle += (shipAngle-approachAngle)*approachAngle;
+        }
+
+        shipSpeed *= 0.965; // slow down with time, water resistance
+        shipAngle += (shipSpeed/40)*(M_PI/12)*turnLevel;
+
+        xPos += shipSpeed*sin(shipAngle);
+        yPos += shipSpeed*cos(shipAngle);
+        
+        setXPosition(localShip, xPos);
+        setYPosition(localShip, yPos);
+        setXVelocity(localShip, shipSpeed*sin(shipAngle));
+        setYVelocity(localShip, shipSpeed*cos(shipAngle));
+        setDirection(localShip, shipAngle);
     }
 
 #endif
