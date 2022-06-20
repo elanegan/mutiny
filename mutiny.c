@@ -26,6 +26,7 @@ void displaySprite(WINDOW* localWin, int yPos, int xPos, char fileName[], int co
 void displayPlayerInfo(WINDOW* localWin, Ship* localShip);
 void displayShip(WINDOW* localWin, Ship* localShip);
 void displayTurnStat(WINDOW* wheelWindow, Ship* player);
+void displayWindInfo(WINDOW* infoWindow, Wind* localWind);
 
 int main(int argc, char* argv[]) {
 
@@ -81,7 +82,7 @@ int main(int argc, char* argv[]) {
     while (ch != KEY_F(1)) {
         updateWind(wind);
         sail(playerShip, wind);
-        mvwprintw(windows[1], 8, 2, "Wind: %.3f-%.3f ", getWindSpeed(wind), getWindDirection(wind));
+        displayWindInfo(windows[1], wind);
         mvwprintw(windows[1], 10, 2, "X: %.1f; Y: %.1f ", getXPosition(playerShip), getYPosition(playerShip));
         updateSprite(playerShip);
         displayShip(windows[0], playerShip);
@@ -261,4 +262,30 @@ void displayTurnStat(WINDOW* wheelWindow, Ship* player) {
             break;
     }
     wattroff(wheelWindow, A_BOLD);
+}
+
+void displayWindInfo(WINDOW* infoWindow, Wind* localWind) {
+        double orientation = getWindDirection(localWind);
+        char text[16];
+
+        if (orientation < 0 || orientation > 2*M_PI)
+            return;
+        else if (orientation < M_PI/4)
+            strcpy(text, "N ");
+        else if (orientation < M_PI/2)
+            strcpy(text, "NE ");
+        else if (orientation < (3*M_PI)/4)
+            strcpy(text, "E ");
+        else if (orientation < M_PI)
+            strcpy(text, "SE ");
+        else if (orientation < (5*M_PI)/4)
+            strcpy(text, "S ");
+        else if (orientation < (3*M_PI)/2)
+            strcpy(text, "SW ");
+        else if (orientation < (7*M_PI)/4)
+            strcpy(text, "W ");
+        else if (orientation < 2*M_PI)
+            strcpy(text, "NW ");
+        
+    mvwprintw(infoWindow, 8, 2, "Wind: %.1f Knots %s ", getWindSpeed(localWind), text);
 }
