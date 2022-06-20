@@ -80,7 +80,9 @@ int main(int argc, char* argv[]) {
     // display changing ship sprite
     while (ch != KEY_F(1)) {
         updateWind(wind);
+        sail(playerShip, wind);
         mvwprintw(windows[1], 8, 2, "Wind: %.3f-%.3f ", getWindSpeed(wind), getWindDirection(wind));
+        mvwprintw(windows[1], 10, 2, "X: %.1f; Y: %.1f ", getXPosition(playerShip), getYPosition(playerShip));
         updateSprite(playerShip);
         displayShip(windows[0], playerShip);
         displayPlayerInfo(windows[1], playerShip);
