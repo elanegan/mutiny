@@ -93,8 +93,13 @@
     }
 
     void setDirection(Ship* localShip, double newDirection) {
-        if (newDirection < 0 || newDirection > 2*M_PI)
-            return;
+        while (newDirection < 0) {
+            newDirection += (2*M_PI);
+        }
+        while (newDirection > 2*M_PI) {
+            newDirection -= (2*M_PI);
+        }
+
         localShip->direction = newDirection;
     }
 
@@ -213,14 +218,14 @@
         double xPos = getXPosition(localShip);
         double yPos = getYPosition(localShip);
 
-        if (getSailStat(localShip)) {
-            shipSpeed += cos(windAngle-shipAngle)*(abs(shipSpeed-windSpeed));
+        if (getSailStat(localShip) && shipSpeed < windSpeed) {
+            shipSpeed += cos(windAngle-shipAngle);
 
             //double approachAngle = (3*M_PI)/4 - (windAngle-shipAngle);
             //shipAngle += (shipAngle-approachAngle)*approachAngle;
         }
 
-        shipSpeed *= 0.965; // slow down with time, water resistance
+        shipSpeed *= 0.985; // slow down with time, water resistance
         shipAngle += (shipSpeed/40)*(M_PI/12)*turnLevel;
 
         xPos += shipSpeed*sin(shipAngle);
