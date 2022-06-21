@@ -214,7 +214,7 @@
         double yPos = getYPosition(localShip);
 
         if (getSailStat(localShip)) {
-            shipSpeed += 1.5*(cos(windAngle-shipAngle));
+            shipSpeed += cos(windAngle-shipAngle)*(abs(shipSpeed-windSpeed));
 
             //double approachAngle = (3*M_PI)/4 - (windAngle-shipAngle);
             //shipAngle += (shipAngle-approachAngle)*approachAngle;
