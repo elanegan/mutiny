@@ -105,6 +105,12 @@ int main(int argc, char* argv[]) {
         displayShip(windows[0], otherShip);
         displayPlayerInfo(windows[1], playerShip);
         displayTurnStat(windows[2], playerShip);
+
+        // replace border for camera
+        wattron(windows[0],COLOR_PAIR(MAP_BORDER_PAIR));
+        wborder(windows[0], '|', '|', '-','-','+','+','+','+');
+        wattroff(windows[0],COLOR_PAIR(MAP_BORDER_PAIR));
+
         update_panels();
         doupdate();
 
@@ -310,11 +316,6 @@ void displayWindInfo(WINDOW* infoWindow, Wind* localWind) {
 void resetCamera(WINDOW* seaWindow) {
     // remove everything from screen
     wclear(seaWindow);
-
-    // replace border
-    wattron(seaWindow,COLOR_PAIR(MAP_BORDER_PAIR));
-    wborder(seaWindow, '|', '|', '-','-','+','+','+','+');
-    wattroff(seaWindow,COLOR_PAIR(MAP_BORDER_PAIR));
 
     // reset background colours
     wbkgd(seaWindow, COLOR_PAIR(SEA_PAIR));
