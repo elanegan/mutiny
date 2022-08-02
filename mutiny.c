@@ -72,6 +72,14 @@ int main(int argc, char* argv[]) {
     Ship* playerShip = createNewShip(0, 0, 0, (seaMaxY/2), (seaMaxX/2));
     displayShip(windows[0], playerShip);
 
+    // set screen position on map
+    int screenXPos = getDisplayXPosition(playerShip) - (seaMaxX/2);
+    int screenYPos = getDisplayYPosition(playerShip) - (seaMaxY/2);
+
+    // display ship off camera
+    Ship* otherShip = createNewShip(1, -30, 10, 0, 0);
+    updateDisplayPosition(otherShip, screenYPos, screenXPos);
+
     // create wind
     Wind* wind = createNewWind();
 
@@ -86,7 +94,13 @@ int main(int argc, char* argv[]) {
         displayWindInfo(windows[1], wind);
         mvwprintw(windows[1], 10, 2, "X: %.0f; Y: %.0f ", getXPosition(playerShip), getYPosition(playerShip));
         updateSprite(playerShip);
+
+        // update camera position
+        screenXPos = -(getXPosition(playerShip) + (seaMaxX/2));
+        screenYPos = -(getYPosition(playerShip) + (seaMaxY/2));
         displayShip(windows[0], playerShip);
+        updateDisplayPosition(otherShip, screenYPos, screenXPos);
+        displayShip(windows[0], otherShip);
         displayPlayerInfo(windows[1], playerShip);
         displayTurnStat(windows[2], playerShip);
         update_panels();
