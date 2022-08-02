@@ -95,7 +95,8 @@
     void updateDisplayPosition(Ship* localShip, int screenYPos, int screenXPos) {
         int newX = getXPosition(localShip) - screenXPos;
         int newY = getYPosition(localShip) - screenYPos;
-        setDisplayXPosition(localShip, newX)
+        setDisplayXPosition(localShip, newX);
+        setDisplayYPosition(localShip, newY);
     }
 
     void setDirection(Ship* localShip, double newDirection) {
