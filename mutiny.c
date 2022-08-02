@@ -27,6 +27,7 @@ void displayPlayerInfo(WINDOW* localWin, Ship* localShip);
 void displayShip(WINDOW* localWin, Ship* localShip);
 void displayTurnStat(WINDOW* wheelWindow, Ship* player);
 void displayWindInfo(WINDOW* infoWindow, Wind* localWind);
+void resetCamera(WINDOW* seaWindow);
 
 int main(int argc, char* argv[]) {
 
@@ -89,6 +90,7 @@ int main(int argc, char* argv[]) {
 
     // display changing ship sprite
     while (ch != KEY_F(1)) {
+        resetCamera(windows[0]);
         updateWind(wind);
         sail(playerShip, wind);
         displayWindInfo(windows[1], wind);
@@ -303,4 +305,19 @@ void displayWindInfo(WINDOW* infoWindow, Wind* localWind) {
             strcpy(text, "NW ");
         
     mvwprintw(infoWindow, 8, 2, "Wind: %.1f Knots %s ", getWindSpeed(localWind), text);
+}
+
+void resetCamera(WINDOW* seaWindow) {
+    // remove everything from screen
+    wclear(seaWindow);
+
+    // replace border
+    wattron(seaWindow,COLOR_PAIR(MAP_BORDER_PAIR));
+    wborder(seaWindow, '|', '|', '-','-','+','+','+','+');
+    wattroff(seaWindow,COLOR_PAIR(MAP_BORDER_PAIR));
+
+    // reset background colours
+    wbkgd(seaWindow, COLOR_PAIR(SEA_PAIR));
+
+    wrefresh(seaWindow);
 }
