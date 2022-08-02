@@ -77,10 +77,6 @@ int main(int argc, char* argv[]) {
     int screenXPos = getDisplayXPosition(playerShip) - (seaMaxX/2);
     int screenYPos = getDisplayYPosition(playerShip) - (seaMaxY/2);
 
-    // display ship off camera
-    Ship* otherShip = createNewShip(1, -30, 10, 0, 0);
-    updateDisplayPosition(otherShip, screenYPos, screenXPos);
-
     // create wind
     Wind* wind = createNewWind();
 
@@ -101,8 +97,6 @@ int main(int argc, char* argv[]) {
         screenXPos = -(getXPosition(playerShip) + (seaMaxX/2));
         screenYPos = -(getYPosition(playerShip) + (seaMaxY/2));
         displayShip(windows[0], playerShip);
-        updateDisplayPosition(otherShip, screenYPos, screenXPos);
-        displayShip(windows[0], otherShip);
         displayPlayerInfo(windows[1], playerShip);
         displayTurnStat(windows[2], playerShip);
 
