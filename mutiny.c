@@ -1,14 +1,17 @@
+/// @file mutiny.c
+// Include libraries
 #include <stdlib.h>
 #include <ncurses.h>
 #include <string.h>
 #include <panel.h>
-
+// Include mutiny libraries
 #include "./ship.h"
 #include "./wind.h"
-
+// Define file constants
 #define BUFFER_SIZE 32
-
+// Define colour constants
 #define COLOR_BROWN 8
+// Define ncurses text colour pair constants
 #define BACKGROUND_PAIR 0
 #define MAP_BORDER_PAIR 1
 #define SEA_PAIR 2
@@ -19,6 +22,7 @@
 #define POSITIVE 7
 #define MEDIUM 8
 
+// Define functions to be used globally
 WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair);
 void destroyWindow(WINDOW* localWin);
 void setupColors();
@@ -29,14 +33,16 @@ void displayTurnStat(WINDOW* wheelWindow, Ship* player);
 void displayWindInfo(WINDOW* infoWindow, Wind* localWind);
 void resetCamera(WINDOW* seaWindow);
 
+/** 
+ * Main entry point for the program.
+ */
 int main(int argc, char* argv[]) {
-
     WINDOW* windows[3];
     PANEL* panels[3];
 
     int ch;
 
-    // initialisation
+    // Initialise ncurses window
     initscr();
     cbreak();
     noecho();
@@ -47,9 +53,8 @@ int main(int argc, char* argv[]) {
 
     // set up windows and panels with dynamic sizing
     int scrX, scrY;
-    getmaxyx(stdscr, scrY, scrX);
-
     int spacing = 3;
+    getmaxyx(stdscr, scrY, scrX);
     double availableX = scrX-(2*spacing);
     double availableY = scrY-(2*spacing);
 
@@ -57,57 +62,64 @@ int main(int argc, char* argv[]) {
     windows[1] = createNewWindow((availableY/2)-spacing, (availableX/3)-(3*spacing), spacing, ((2*availableX)/3)+(3*spacing), INFO_PAIR);
     windows[2] = createNewWindow(ceil(availableY/2), (availableX/3)-(3*spacing), (availableY/2)+spacing, ((2*availableX)/3)+(3*spacing), WHEEL_PAIR);
 
+    // Create ncurses panels for all windows
     for (int i = 0; i < 3; i++) {
         panels[i] = new_panel(windows[i]);
     }
 
-    // display steering wheel in centre of wheel screen
+    // display steering wheel in centre of wheel window
     int wheelMaxX, wheelMaxY;
     getmaxyx(windows[2], wheelMaxY, wheelMaxX);
-
     displaySprite(windows[2], (wheelMaxY/2)-4, (wheelMaxX/2)-8, "./assets/wheel", WHEEL_PAIR);
 
-    // display player ship in centre of the main playing screen
+    // display player ship in centre of the camera window
     int seaMaxX, seaMaxY;
     getmaxyx(windows[0], seaMaxY, seaMaxX);
     Ship* playerShip = createNewShip(0, 0, 0, (seaMaxY/2), (seaMaxX/2));
     displayShip(windows[0], playerShip);
 
-    // set screen position on map
+    // set camera position on map
     int screenXPos = getDisplayXPosition(playerShip) - (seaMaxX/2);
     int screenYPos = getDisplayYPosition(playerShip) - (seaMaxY/2);
 
     // create wind
     Wind* wind = createNewWind();
 
-    // updates
+    // update all windows
     update_panels();
     doupdate();
 
-    // display changing ship sprite
+    // game loop
     while (ch != KEY_F(1)) {
+        // Clear the screen for displaying sprites
         resetCamera(windows[0]);
+
+        // Update and display wind info
         updateWind(wind);
-        sail(playerShip, wind);
         displayWindInfo(windows[1], wind);
+
+        // Move player and display sprite and (debug) position info 
+        sail(playerShip, wind);
         mvwprintw(windows[1], 10, 2, "X: %.0f; Y: %.0f ", getXPosition(playerShip), getYPosition(playerShip));
         updateSprite(playerShip);
 
-        // update camera position
+        // Update camera position
         screenXPos = -(getXPosition(playerShip) + (seaMaxX/2));
         screenYPos = -(getYPosition(playerShip) + (seaMaxY/2));
         displayShip(windows[0], playerShip);
         displayPlayerInfo(windows[1], playerShip);
         displayTurnStat(windows[2], playerShip);
 
-        // replace border for camera
+        // Replace border for camera
         wattron(windows[0],COLOR_PAIR(MAP_BORDER_PAIR));
         wborder(windows[0], '|', '|', '-','-','+','+','+','+');
         wattroff(windows[0],COLOR_PAIR(MAP_BORDER_PAIR));
 
+        // Update all windows with new info
         update_panels();
         doupdate();
 
+        // Get input from player for controls
         ch = getch();
         switch(ch) {
             case(KEY_RIGHT):
@@ -126,6 +138,15 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
+/**
+ * Creates and colours a new ncurses window with a border.
+ * @param[in] height The height of the window.
+ * @param[in] width The width of the window.
+ * @param[in] initY The Y position on the main screen to start the window.
+ * @param[in] initX The X position on the main screen to start the window.
+ * @param[in] colPair The colour pair to use for the background of the window.
+ * @param[out] localWin A pointer to an ncurses window.
+ */
 WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair) {
     WINDOW* localWin;
 
@@ -141,12 +162,19 @@ WINDOW* createNewWindow(int height, int width, int initY, int initX, int colPair
     return localWin;
 }
 
+/**
+ * Destroys an ncurses window.
+ * @param[in] localWin The window to be destroyed.
+ */
 void destroyWindow(WINDOW* localWin) {
     wborder(localWin, ' ', ' ', ' ',' ',' ',' ',' ',' ');
     wrefresh(localWin);
     delwin(localWin);
 }
 
+/**
+ * Initialises colours and colour pairs.
+ */
 void setupColors() {
     start_color();
 
@@ -162,6 +190,14 @@ void setupColors() {
     init_pair(POSITIVE, COLOR_GREEN, COLOR_BLACK);
 }
 
+/**
+ * Displays a sprite from a text file on a window.
+ * @param[in] localWin The window to display the sprite on.
+ * @param[in] yPos The Y position to display the sprite on the window.
+ * @param[in] xPos The X position to display the sprite on the window.
+ * @param[in] fileName The path to the sprite file.
+ * @param[in] colPair The colour pair to use for the sprite.
+ */
 void displaySprite(WINDOW* localWin, int yPos, int xPos, char fileName[], int colPair) {
     int yPosition = yPos;
     int xPosition = xPos;
@@ -189,6 +225,11 @@ void displaySprite(WINDOW* localWin, int yPos, int xPos, char fileName[], int co
     fclose(fileHandle);
 }
 
+/**
+ * Displays information about the player ship.
+ * @param[in] localWin The window to display the information on.
+ * @param[in] localShip The ship to display information about.
+ */
 void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {
     int healthBarSize = (int) (getHealth(localShip)/5);
 
@@ -228,6 +269,11 @@ void displayPlayerInfo(WINDOW* localWin, Ship* localShip) {
     }
 }
 
+/**
+ * Displays a ship on the window.
+ * @param[in] seaWindow The window to display the ship on.
+ * @param[in] localship The ship to display on the window.
+ */
 void displayShip(WINDOW* seaWindow, Ship* localShip) {
     char sprite[64];
     strcpy(sprite, localShip->spritePath);
@@ -239,6 +285,11 @@ void displayShip(WINDOW* seaWindow, Ship* localShip) {
     displaySprite(seaWindow, yPos, xPos, sprite, SHIP_PAIR);
 }
 
+/**
+ * Displays the turn status for the player.
+ * @param[in] wheelWindow The window to display the turn status on.
+ * @param[in] player The player ship.
+ */
 void displayTurnStat(WINDOW* wheelWindow, Ship* player) {
     int turnLevel = getTurnLevel(player);
     int maxX, maxY;
@@ -281,6 +332,11 @@ void displayTurnStat(WINDOW* wheelWindow, Ship* player) {
     wattroff(wheelWindow, A_BOLD);
 }
 
+/**
+ * Displays information about the wind.
+ * @param[in] infoWindow The window to display the information on.
+ * @param[in] localwind The wind to display information about.
+ */
 void displayWindInfo(WINDOW* infoWindow, Wind* localWind) {
         double orientation = getWindDirection(localWind);
         char text[16] = "!! ";
@@ -307,6 +363,10 @@ void displayWindInfo(WINDOW* infoWindow, Wind* localWind) {
     mvwprintw(infoWindow, 8, 2, "Wind: %.1f Knots %s ", getWindSpeed(localWind), text);
 }
 
+/**
+ * Resets the camera window for sprite display.
+ * @param[in] seaWindow The camera window.
+ */
 void resetCamera(WINDOW* seaWindow) {
     // remove everything from screen
     wclear(seaWindow);
