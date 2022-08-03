@@ -232,8 +232,8 @@
             //shipAngle += (shipAngle-approachAngle)*approachAngle;
         }
 
-        shipSpeed *= 0.985; // slow down with time, water resistance
-        shipAngle += (shipSpeed/40)*(M_PI/12)*turnLevel;
+        shipSpeed *= 0.95; // slow down with time, water resistance
+        shipAngle += (shipSpeed/8)*(M_PI/12)*turnLevel;
 
         xPos += shipSpeed*sin(shipAngle);
         yPos += shipSpeed*cos(shipAngle);

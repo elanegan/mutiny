@@ -3,6 +3,8 @@
 #include <time.h>
 #define WIND
 
+    #define SPEED 1.5
+
     typedef struct Wind {
         double direction; // wind direction in radians (0-2pi)
         double speed; // absolute speed of wind
@@ -10,8 +12,8 @@
 
     Wind* createNewWind() {
         Wind* wind = malloc(sizeof(Wind));
-        wind->direction = 35.0;
-        wind->speed = 15.0;
+        wind->direction = 0;
+        wind->speed = SPEED;
         srand(time(NULL));
 
         return(wind);
@@ -59,8 +61,8 @@
         if (currentDirection > (2*M_PI) || currentDirection < 0.0)
             currentDirection = 0.0;
         
-        if (currentSpeed > 20) {
-            currentSpeed = 19.8;
+        if (currentSpeed > 1.4*SPEED) {
+            currentSpeed = 1.3*SPEED;
         }
 
         localWind->direction = currentDirection;
