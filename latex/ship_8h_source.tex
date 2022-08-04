@@ -1,0 +1,254 @@
+\hypertarget{ship_8h_source}{}\doxysection{ship.\+h}
+\mbox{\hyperlink{ship_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef SHIP}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{wind_8h}{./wind.h}}"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define SHIP}}
+\DoxyCodeLine{7 \textcolor{comment}{//define compass directions}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define SHIP\_NORTH 0}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define SHIP\_NORTH\_WEST 1}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define SHIP\_WEST 2}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define SHIP\_SOUTH\_WEST 3}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define SHIP\_SOUTH 4}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define SHIP\_SOUTH\_EAST 5}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define SHIP\_EAST 6}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define SHIP\_NORTH\_EAST 7}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{18     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structShip}{Ship}} \{}
+\DoxyCodeLine{19         \textcolor{keywordtype}{int} id; \textcolor{comment}{// unique identifier. player is 0.}}
+\DoxyCodeLine{20         \textcolor{keywordtype}{double} health; \textcolor{comment}{//health, from 0-\/100.}}
+\DoxyCodeLine{21         \textcolor{keywordtype}{double} xPosition; \textcolor{comment}{// x position on the game map}}
+\DoxyCodeLine{22         \textcolor{keywordtype}{double} yPosition; \textcolor{comment}{// y position on the game map}}
+\DoxyCodeLine{23         \textcolor{keywordtype}{int} displayXPosition; \textcolor{comment}{// x position on the display screen}}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} displayYPosition; \textcolor{comment}{// y position on the display screen}}
+\DoxyCodeLine{25         \textcolor{keywordtype}{double} direction; \textcolor{comment}{// angle of direction of travel, 0-\/2pi or degrees?}}
+\DoxyCodeLine{26         \textcolor{keywordtype}{double} xVelocity; \textcolor{comment}{// x velocity of the ship across the map}}
+\DoxyCodeLine{27         \textcolor{keywordtype}{double} yVelocity; \textcolor{comment}{//y velocity of the ship across the map}}
+\DoxyCodeLine{28         \textcolor{keywordtype}{int} turnLevel; \textcolor{comment}{// the turn level that the player controls}}
+\DoxyCodeLine{29         \textcolor{keywordtype}{int} sailsOpen; \textcolor{comment}{// whether the sails are open}}
+\DoxyCodeLine{30         \textcolor{keywordtype}{double} firingSpeed; \textcolor{comment}{// how fast the ship fires}}
+\DoxyCodeLine{31         \textcolor{keywordtype}{char} spritePath[64]; \textcolor{comment}{// the path to the set of sprites to be used}}
+\DoxyCodeLine{32     \} \mbox{\hyperlink{ship_8h_a6f28cfabd3462dd926cab372ce83d2b7}{Ship}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{43     \mbox{\hyperlink{structShip}{Ship}}* \mbox{\hyperlink{ship_8h_a4ddc0cb4d1a72ca7f416db6fc0cb4753}{createNewShip}}(\textcolor{keywordtype}{int} identifier, \textcolor{keywordtype}{double} mapY, \textcolor{keywordtype}{double} mapX, \textcolor{keywordtype}{int} screenY, \textcolor{keywordtype}{int} screenX) \{}
+\DoxyCodeLine{44         \mbox{\hyperlink{structShip}{Ship}}* ship = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structShip}{Ship}}));}
+\DoxyCodeLine{45         ship-\/>id = identifier;}
+\DoxyCodeLine{46         ship-\/>health = 100.0;}
+\DoxyCodeLine{47         ship-\/>xPosition = mapX;}
+\DoxyCodeLine{48         ship-\/>yPosition = mapY;}
+\DoxyCodeLine{49         ship-\/>displayXPosition = screenX;}
+\DoxyCodeLine{50         ship-\/>displayYPosition = screenY;}
+\DoxyCodeLine{51         ship-\/>direction = 0.0;}
+\DoxyCodeLine{52         ship-\/>xVelocity = 0.0;}
+\DoxyCodeLine{53         ship-\/>yVelocity = 0.0;}
+\DoxyCodeLine{54         ship-\/>turnLevel = 0;}
+\DoxyCodeLine{55         ship-\/>firingSpeed = 1.0;}
+\DoxyCodeLine{56         ship-\/>sailsOpen = 1;}
+\DoxyCodeLine{57         strcpy(ship-\/>spritePath, \textcolor{stringliteral}{"{}./assets/ship/sailOpen/ship0"{}});}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59         \textcolor{keywordflow}{return}(ship);}
+\DoxyCodeLine{60     \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a512ea7a643481420546e712bf56f1548}{destroyShip}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{67         free(localShip);}
+\DoxyCodeLine{68     \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_ab1005794e216fd546df0fc071fc1e12f}{setHealth}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{double} newHealth) \{}
+\DoxyCodeLine{76         localShip-\/>health = newHealth;}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{84     \textcolor{keywordtype}{double} \mbox{\hyperlink{ship_8h_a015706f2a039220397b5b9309c77f4d9}{getHealth}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{85         \textcolor{keywordflow}{return}(localShip-\/>health);}
+\DoxyCodeLine{86     \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{93     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_aac4ba9ba4331ebabc679b8ff2a03e3e5}{setXPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{double} newXPosition) \{}
+\DoxyCodeLine{94         localShip-\/>xPosition = newXPosition;}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{102     \textcolor{keywordtype}{double} \mbox{\hyperlink{ship_8h_a516d90366d609a151775b404b358d1f0}{getXPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{103         \textcolor{keywordflow}{return}(localShip-\/>xPosition);}
+\DoxyCodeLine{104     \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{111     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a6066d8dedfc201bde3827988ecdef0dc}{setYPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{double} newYPosition) \{}
+\DoxyCodeLine{112         localShip-\/>yPosition = newYPosition;}
+\DoxyCodeLine{113     \}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{120     \textcolor{keywordtype}{double} \mbox{\hyperlink{ship_8h_ac80aeb5798adf70da03964aeb8c3a778}{getYPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{121         \textcolor{keywordflow}{return}(localShip-\/>yPosition);}
+\DoxyCodeLine{122     \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{129     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_abb4f3822ac5561545540d6f4f0ace887}{setDisplayXPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{int} newXPosition) \{}
+\DoxyCodeLine{130         localShip-\/>displayXPosition = newXPosition;}
+\DoxyCodeLine{131     \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{138     \textcolor{keywordtype}{int} \mbox{\hyperlink{ship_8h_a7d306bc828ba9765aedeb3d746b37aa7}{getDisplayXPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{139         \textcolor{keywordflow}{return}(localShip-\/>displayXPosition);}
+\DoxyCodeLine{140     \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{147     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a525161b16b237d81a24f85bf12d9a1ab}{setDisplayYPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{int} newYPosition) \{}
+\DoxyCodeLine{148         localShip-\/>displayYPosition = newYPosition;}
+\DoxyCodeLine{149     \}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{156     \textcolor{keywordtype}{int} \mbox{\hyperlink{ship_8h_a306a2b436553fd960de66271bc4085f4}{getDisplayYPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{157         \textcolor{keywordflow}{return}(localShip-\/>displayYPosition);}
+\DoxyCodeLine{158     \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{166     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a3bf58141f56498aa9c673d68e30b023f}{updateDisplayPosition}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{int} screenYPos, \textcolor{keywordtype}{int} screenXPos) \{}
+\DoxyCodeLine{167         \textcolor{keywordtype}{int} newX = \mbox{\hyperlink{ship_8h_a516d90366d609a151775b404b358d1f0}{getXPosition}}(localShip) -\/ screenXPos;}
+\DoxyCodeLine{168         \textcolor{keywordtype}{int} newY = \mbox{\hyperlink{ship_8h_ac80aeb5798adf70da03964aeb8c3a778}{getYPosition}}(localShip) -\/ screenYPos;}
+\DoxyCodeLine{169         \mbox{\hyperlink{ship_8h_abb4f3822ac5561545540d6f4f0ace887}{setDisplayXPosition}}(localShip, newX);}
+\DoxyCodeLine{170         \mbox{\hyperlink{ship_8h_a525161b16b237d81a24f85bf12d9a1ab}{setDisplayYPosition}}(localShip, newY);}
+\DoxyCodeLine{171     \}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{179     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_ae2dd82455e9188e58e4f6298a61623a9}{setDirection}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{double} newDirection) \{}
+\DoxyCodeLine{180         \textcolor{keywordflow}{while} (newDirection < 0) \{}
+\DoxyCodeLine{181             newDirection += (2*M\_PI);}
+\DoxyCodeLine{182         \}}
+\DoxyCodeLine{183         \textcolor{keywordflow}{while} (newDirection > 2*M\_PI) \{}
+\DoxyCodeLine{184             newDirection -\/= (2*M\_PI);}
+\DoxyCodeLine{185         \}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187         localShip-\/>direction = newDirection;}
+\DoxyCodeLine{188     \}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{196     \textcolor{keywordtype}{double} \mbox{\hyperlink{ship_8h_a98cc4f9ff6278955017ea762bc4f4741}{getDirection}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{197         \textcolor{keywordflow}{return}(localShip-\/>direction);}
+\DoxyCodeLine{198     \}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{205     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_aa6f9c3c9e4176a4d92756bf3746dc0fc}{setXVelocity}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{double} newVelocity) \{}
+\DoxyCodeLine{206         localShip-\/>xVelocity = newVelocity;}
+\DoxyCodeLine{207     \}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{214     \textcolor{keywordtype}{double} \mbox{\hyperlink{ship_8h_aa1909192454860b150dee296a57d838b}{getXVelocity}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{215         \textcolor{keywordflow}{return}(localShip-\/>xVelocity);}
+\DoxyCodeLine{216     \}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{223     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a84651e0b50fa4cb99ea2912a209e7e67}{setYVelocity}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{double} newVelocity) \{}
+\DoxyCodeLine{224         localShip-\/>yVelocity = newVelocity;}
+\DoxyCodeLine{225     \}}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{232     \textcolor{keywordtype}{double} \mbox{\hyperlink{ship_8h_a550470ed6f66fe0b0dc867904a1225a5}{getYVelocity}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{233         \textcolor{keywordflow}{return}(localShip-\/>yVelocity);}
+\DoxyCodeLine{234     \}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{241     \textcolor{keywordtype}{double} \mbox{\hyperlink{ship_8h_a8495ab7a598acbd179911b30a83ff5ab}{getSpeed}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{242         \textcolor{keywordtype}{double} xSpeed = fabs(\mbox{\hyperlink{ship_8h_aa1909192454860b150dee296a57d838b}{getXVelocity}}(localShip));}
+\DoxyCodeLine{243         \textcolor{keywordtype}{double} ySpeed = fabs(\mbox{\hyperlink{ship_8h_a550470ed6f66fe0b0dc867904a1225a5}{getYVelocity}}(localShip));}
+\DoxyCodeLine{244         \textcolor{keywordtype}{double} speed = sqrt((xSpeed*xSpeed) + (ySpeed*ySpeed));}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246         \textcolor{keywordflow}{return} speed;}
+\DoxyCodeLine{247     \}}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249     \textcolor{comment}{// Port = anticlockwise turn}}
+\DoxyCodeLine{255 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a190084c3937595a545dd85624779ae4f}{incPortTurn}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{256         \textcolor{keywordflow}{if}(localShip-\/>turnLevel == -\/3)}
+\DoxyCodeLine{257             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{258         localShip-\/>turnLevel-\/-\/;}
+\DoxyCodeLine{259     \}}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261     \textcolor{comment}{// Starboard = clockwise turn}}
+\DoxyCodeLine{267 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a1300cce825acc6f83c62064af4d83071}{incStarboardTurn}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{268         \textcolor{keywordflow}{if}(localShip-\/>turnLevel == 3)}
+\DoxyCodeLine{269             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{270         localShip-\/>turnLevel++;}
+\DoxyCodeLine{271     \}}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{279     \textcolor{keywordtype}{int} \mbox{\hyperlink{ship_8h_ab82b1ddef5ce1b96e3976eff433762da}{getTurnLevel}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{280         \textcolor{keywordflow}{return}(localShip-\/>turnLevel);}
+\DoxyCodeLine{281     \}}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{288     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a558872fccfdd7aa3fba824fb3520eb1f}{setFiringSpeed}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{double} newFiringSpeed) \{}
+\DoxyCodeLine{289         localShip-\/>firingSpeed = newFiringSpeed;}
+\DoxyCodeLine{290     \}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{297     \textcolor{keywordtype}{double} \mbox{\hyperlink{ship_8h_a44640177081a4565bd97faafe8556120}{getFiringSpeed}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{298         \textcolor{keywordflow}{return}(localShip-\/>firingSpeed);}
+\DoxyCodeLine{299     \}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{305     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_aa1bbf51b828a014f13ebadeba4641493}{switchSails}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{306         localShip-\/>sailsOpen = !(localShip-\/>sailsOpen);}
+\DoxyCodeLine{307     \}}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{314     \textcolor{keywordtype}{int} \mbox{\hyperlink{ship_8h_a3cd31e5807d3efa3422fc8e90cc19896}{getSailStat}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{315         \textcolor{keywordflow}{return}(localShip-\/>sailsOpen);}
+\DoxyCodeLine{316     \}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{323     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a9c505cd011d5f9a466adf620bc097e91}{setSpritePath}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{char}* newPath) \{}
+\DoxyCodeLine{324         strcpy(localShip-\/>spritePath, newPath);}
+\DoxyCodeLine{325     \}}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{332     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \textcolor{keywordtype}{int} orientation) \{}
+\DoxyCodeLine{333         \textcolor{keywordflow}{if} (orientation < 0 || orientation > 7)}
+\DoxyCodeLine{334             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{335         }
+\DoxyCodeLine{336         \textcolor{keywordtype}{char} path[64];}
+\DoxyCodeLine{337         \textcolor{keywordtype}{char} openClose[16] = \{\textcolor{stringliteral}{"{}sailDown/"{}}\};}
+\DoxyCodeLine{338         \textcolor{keywordflow}{if}(\mbox{\hyperlink{ship_8h_a3cd31e5807d3efa3422fc8e90cc19896}{getSailStat}}(localShip))}
+\DoxyCodeLine{339             strcpy(openClose, \textcolor{stringliteral}{"{}sailOpen/"{}});}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341         snprintf(path, 64, \textcolor{stringliteral}{"{}./assets/ship/\%sship\%d"{}}, openClose, orientation);}
+\DoxyCodeLine{342         \mbox{\hyperlink{ship_8h_a9c505cd011d5f9a466adf620bc097e91}{setSpritePath}}(localShip, path);}
+\DoxyCodeLine{343     \}}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{350     \textcolor{keywordtype}{char}* \mbox{\hyperlink{ship_8h_ad374b1e4fadbd2dfa30be389679414b4}{getSpritePath}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{351         \textcolor{keywordflow}{return} localShip-\/>spritePath;}
+\DoxyCodeLine{352     \}}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{358     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_ac818ce425060bfaedfc5d9bdd38f0d47}{updateSprite}}(\mbox{\hyperlink{structShip}{Ship}}* localShip) \{}
+\DoxyCodeLine{359         \textcolor{keywordtype}{double} orientation = \mbox{\hyperlink{ship_8h_a98cc4f9ff6278955017ea762bc4f4741}{getDirection}}(localShip);}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{361         \textcolor{keywordflow}{if} (orientation < 0 || orientation > 2*M\_PI)}
+\DoxyCodeLine{362             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{363         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (orientation < M\_PI/4)}
+\DoxyCodeLine{364             \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(localShip, SHIP\_NORTH);}
+\DoxyCodeLine{365         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (orientation < M\_PI/2)}
+\DoxyCodeLine{366             \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(localShip, SHIP\_NORTH\_EAST);}
+\DoxyCodeLine{367         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (orientation < (3*M\_PI)/4)}
+\DoxyCodeLine{368             \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(localShip, SHIP\_EAST);}
+\DoxyCodeLine{369         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (orientation < M\_PI)}
+\DoxyCodeLine{370             \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(localShip, SHIP\_SOUTH\_EAST);}
+\DoxyCodeLine{371         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (orientation < (5*M\_PI)/4)}
+\DoxyCodeLine{372             \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(localShip, SHIP\_SOUTH);}
+\DoxyCodeLine{373         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (orientation < (3*M\_PI)/2)}
+\DoxyCodeLine{374             \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(localShip, SHIP\_SOUTH\_WEST);}
+\DoxyCodeLine{375         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (orientation < (7*M\_PI)/4)}
+\DoxyCodeLine{376             \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(localShip, SHIP\_WEST);}
+\DoxyCodeLine{377         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (orientation < 2*M\_PI)}
+\DoxyCodeLine{378             \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{setSpriteCompass}}(localShip, SHIP\_NORTH\_WEST);}
+\DoxyCodeLine{379     \}}
+\DoxyCodeLine{380 }
+\DoxyCodeLine{386     \textcolor{keywordtype}{void} \mbox{\hyperlink{ship_8h_a9d2d0041d719e3b699de740467ac3136}{sail}}(\mbox{\hyperlink{structShip}{Ship}}* localShip, \mbox{\hyperlink{structWind}{Wind}}* localWind) \{}
+\DoxyCodeLine{387         \textcolor{keywordtype}{double} shipSpeed = \mbox{\hyperlink{ship_8h_a8495ab7a598acbd179911b30a83ff5ab}{getSpeed}}(localShip);}
+\DoxyCodeLine{388         \textcolor{keywordtype}{int} turnLevel = \mbox{\hyperlink{ship_8h_ab82b1ddef5ce1b96e3976eff433762da}{getTurnLevel}}(localShip);}
+\DoxyCodeLine{389         \textcolor{keywordtype}{double} windSpeed = \mbox{\hyperlink{wind_8h_a4f5632e291e3ba6a865c7cf5636c9e24}{getWindSpeed}}(localWind);}
+\DoxyCodeLine{390         \textcolor{keywordtype}{double} shipAngle = \mbox{\hyperlink{ship_8h_a98cc4f9ff6278955017ea762bc4f4741}{getDirection}}(localShip);}
+\DoxyCodeLine{391         \textcolor{keywordtype}{double} windAngle = \mbox{\hyperlink{wind_8h_ac9d76ad290a82bebcb0dce884a0a2c3c}{getWindDirection}}(localWind);}
+\DoxyCodeLine{392         \textcolor{keywordtype}{double} xPos = \mbox{\hyperlink{ship_8h_a516d90366d609a151775b404b358d1f0}{getXPosition}}(localShip);}
+\DoxyCodeLine{393         \textcolor{keywordtype}{double} yPos = \mbox{\hyperlink{ship_8h_ac80aeb5798adf70da03964aeb8c3a778}{getYPosition}}(localShip);}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395         \textcolor{keywordflow}{if} (\mbox{\hyperlink{ship_8h_a3cd31e5807d3efa3422fc8e90cc19896}{getSailStat}}(localShip) \&\& shipSpeed < windSpeed) \{}
+\DoxyCodeLine{396             shipSpeed += cos(windAngle-\/shipAngle);}
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398             \textcolor{comment}{//double approachAngle = (3*M\_PI)/4 -\/ (windAngle-\/shipAngle);}}
+\DoxyCodeLine{399             \textcolor{comment}{//shipAngle += (shipAngle-\/approachAngle)*approachAngle;}}
+\DoxyCodeLine{400         \}}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{402         shipSpeed *= 0.95; \textcolor{comment}{// slow down with time, water resistance}}
+\DoxyCodeLine{403         shipAngle += (shipSpeed/8)*(M\_PI/12)*turnLevel;}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405         xPos += shipSpeed*sin(shipAngle);}
+\DoxyCodeLine{406         yPos += shipSpeed*cos(shipAngle);}
+\DoxyCodeLine{407         }
+\DoxyCodeLine{408         \mbox{\hyperlink{ship_8h_aac4ba9ba4331ebabc679b8ff2a03e3e5}{setXPosition}}(localShip, xPos);}
+\DoxyCodeLine{409         \mbox{\hyperlink{ship_8h_a6066d8dedfc201bde3827988ecdef0dc}{setYPosition}}(localShip, yPos);}
+\DoxyCodeLine{410         \mbox{\hyperlink{ship_8h_aa6f9c3c9e4176a4d92756bf3746dc0fc}{setXVelocity}}(localShip, shipSpeed*sin(shipAngle));}
+\DoxyCodeLine{411         \mbox{\hyperlink{ship_8h_a84651e0b50fa4cb99ea2912a209e7e67}{setYVelocity}}(localShip, shipSpeed*cos(shipAngle));}
+\DoxyCodeLine{412         \mbox{\hyperlink{ship_8h_ae2dd82455e9188e58e4f6298a61623a9}{setDirection}}(localShip, shipAngle);}
+\DoxyCodeLine{413     \}}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

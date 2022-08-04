@@ -1,0 +1,79 @@
+\hypertarget{wind_8h_source}{}\doxysection{wind.\+h}
+\mbox{\hyperlink{wind_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef WIND}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#define WIND}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{    \#define SPEED 1.5 }}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{10     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structWind}{Wind}} \{}
+\DoxyCodeLine{11         \textcolor{keywordtype}{double} direction; \textcolor{comment}{// wind direction in radians (0-\/2pi)}}
+\DoxyCodeLine{12         \textcolor{keywordtype}{double} speed; \textcolor{comment}{// absolute speed of wind}}
+\DoxyCodeLine{13     \} \mbox{\hyperlink{wind_8h_a218c24ea2e844ae06921150b554f084b}{Wind}};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{19     \mbox{\hyperlink{structWind}{Wind}}* \mbox{\hyperlink{wind_8h_a85624baa6fae79b7488c9be0a81fcd1c}{createNewWind}}() \{}
+\DoxyCodeLine{20         \mbox{\hyperlink{structWind}{Wind}}* wind = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structWind}{Wind}}));}
+\DoxyCodeLine{21         wind-\/>direction = 0;}
+\DoxyCodeLine{22         wind-\/>speed = \mbox{\hyperlink{wind_8h_aac3553b3932cbfeeac4526ce7ca0336b}{SPEED}};}
+\DoxyCodeLine{23         srand(time(NULL));}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25         \textcolor{keywordflow}{return}(wind);}
+\DoxyCodeLine{26     \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} \mbox{\hyperlink{wind_8h_aa3df758bac23c85567f03bbe1a95f8d8}{destroyWind}}(\mbox{\hyperlink{structWind}{Wind}}* localWind) \{}
+\DoxyCodeLine{33         free(localWind);}
+\DoxyCodeLine{34     \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{41     \textcolor{keywordtype}{double} \mbox{\hyperlink{wind_8h_ac9d76ad290a82bebcb0dce884a0a2c3c}{getWindDirection}}(\mbox{\hyperlink{structWind}{Wind}}* localWind) \{}
+\DoxyCodeLine{42         \textcolor{keywordflow}{return}(localWind-\/>direction);}
+\DoxyCodeLine{43     \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{50     \textcolor{keywordtype}{double} \mbox{\hyperlink{wind_8h_a4f5632e291e3ba6a865c7cf5636c9e24}{getWindSpeed}}(\mbox{\hyperlink{structWind}{Wind}}* localWind) \{}
+\DoxyCodeLine{51         \textcolor{keywordflow}{return}(localWind-\/>speed);}
+\DoxyCodeLine{52     \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{58     \textcolor{keywordtype}{void} \mbox{\hyperlink{wind_8h_ada731fdf4d5481ce7b39a7441da8c0f3}{updateWind}}(\mbox{\hyperlink{structWind}{Wind}}* localWind) \{}
+\DoxyCodeLine{59         \textcolor{keywordtype}{double} currentSpeed = \mbox{\hyperlink{wind_8h_a4f5632e291e3ba6a865c7cf5636c9e24}{getWindSpeed}}(localWind);}
+\DoxyCodeLine{60         \textcolor{keywordtype}{double} currentDirection = \mbox{\hyperlink{wind_8h_ac9d76ad290a82bebcb0dce884a0a2c3c}{getWindDirection}}(localWind);}
+\DoxyCodeLine{61         \textcolor{keywordtype}{int} changeSpeed = rand() \% 20;}
+\DoxyCodeLine{62         \textcolor{keywordtype}{int} changeDirection = rand() \% 30;}
+\DoxyCodeLine{63         \textcolor{comment}{//printf("{}\%d \%d, "{}, changeSpeed, changeDirection);}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65         \textcolor{keywordflow}{switch}(changeSpeed) \{}
+\DoxyCodeLine{66             \textcolor{keywordflow}{case}(1):}
+\DoxyCodeLine{67                 currentSpeed += 0.01;}
+\DoxyCodeLine{68                 currentSpeed *= 1.47;}
+\DoxyCodeLine{69                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{70             \textcolor{keywordflow}{case}(4):}
+\DoxyCodeLine{71                 currentSpeed *= 0.77;}
+\DoxyCodeLine{72                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{73         \}}
+\DoxyCodeLine{74         \textcolor{keywordflow}{switch}(changeDirection) \{}
+\DoxyCodeLine{75             \textcolor{keywordflow}{case}(3):}
+\DoxyCodeLine{76                 currentDirection += M\_PI/8;}
+\DoxyCodeLine{77                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{78             \textcolor{keywordflow}{case}(7):}
+\DoxyCodeLine{79                 currentDirection *= 1.23;}
+\DoxyCodeLine{80                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{81             \textcolor{keywordflow}{case}(1):}
+\DoxyCodeLine{82                 currentDirection -\/= M\_PI/16;}
+\DoxyCodeLine{83         \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85         \textcolor{keywordflow}{if} (currentDirection > (2*M\_PI) || currentDirection < 0.0)}
+\DoxyCodeLine{86             currentDirection = 0.0;}
+\DoxyCodeLine{87         }
+\DoxyCodeLine{88         \textcolor{keywordflow}{if} (currentSpeed > 1.4*\mbox{\hyperlink{wind_8h_aac3553b3932cbfeeac4526ce7ca0336b}{SPEED}}) \{}
+\DoxyCodeLine{89             currentSpeed = 1.3*\mbox{\hyperlink{wind_8h_aac3553b3932cbfeeac4526ce7ca0336b}{SPEED}};}
+\DoxyCodeLine{90         \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92         localWind-\/>direction = currentDirection;}
+\DoxyCodeLine{93         localWind-\/>speed = currentSpeed;}
+\DoxyCodeLine{94         }
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
