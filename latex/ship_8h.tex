@@ -1,0 +1,529 @@
+\hypertarget{ship_8h}{}\doxysection{ship.\+h File Reference}
+\label{ship_8h}\index{ship.h@{ship.h}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}./wind.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structShip}{Ship}}
+\begin{DoxyCompactList}\small\item\em Data type for a ship. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ship_8h_ae757edd86297a2c42d82a54a5825d3d2}\label{ship_8h_ae757edd86297a2c42d82a54a5825d3d2}} 
+\#define {\bfseries SHIP\+\_\+\+NORTH}~0
+\item 
+\mbox{\Hypertarget{ship_8h_a344be526b38f8521e76774f0b4fcc7bb}\label{ship_8h_a344be526b38f8521e76774f0b4fcc7bb}} 
+\#define {\bfseries SHIP\+\_\+\+NORTH\+\_\+\+WEST}~1
+\item 
+\mbox{\Hypertarget{ship_8h_a109e12ed32c35d6bd9841d6f31760a31}\label{ship_8h_a109e12ed32c35d6bd9841d6f31760a31}} 
+\#define {\bfseries SHIP\+\_\+\+WEST}~2
+\item 
+\mbox{\Hypertarget{ship_8h_a331526289a813892cc5c0eea070716c2}\label{ship_8h_a331526289a813892cc5c0eea070716c2}} 
+\#define {\bfseries SHIP\+\_\+\+SOUTH\+\_\+\+WEST}~3
+\item 
+\mbox{\Hypertarget{ship_8h_ad7556ad70fa17d017ee3b73de4172a1a}\label{ship_8h_ad7556ad70fa17d017ee3b73de4172a1a}} 
+\#define {\bfseries SHIP\+\_\+\+SOUTH}~4
+\item 
+\mbox{\Hypertarget{ship_8h_aef3a0cd4bb0efead6484a96b686dec5c}\label{ship_8h_aef3a0cd4bb0efead6484a96b686dec5c}} 
+\#define {\bfseries SHIP\+\_\+\+SOUTH\+\_\+\+EAST}~5
+\item 
+\mbox{\Hypertarget{ship_8h_aeadcfb3bd7d0f11bb09c8bea85e137c3}\label{ship_8h_aeadcfb3bd7d0f11bb09c8bea85e137c3}} 
+\#define {\bfseries SHIP\+\_\+\+EAST}~6
+\item 
+\mbox{\Hypertarget{ship_8h_a7cf0dd7503a070fc9e13faf7ddd19507}\label{ship_8h_a7cf0dd7503a070fc9e13faf7ddd19507}} 
+\#define {\bfseries SHIP\+\_\+\+NORTH\+\_\+\+EAST}~7
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ship_8h_a6f28cfabd3462dd926cab372ce83d2b7}\label{ship_8h_a6f28cfabd3462dd926cab372ce83d2b7}} 
+typedef struct \mbox{\hyperlink{structShip}{Ship}} {\bfseries Ship}
+\begin{DoxyCompactList}\small\item\em Data type for a ship. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structShip}{Ship}} $\ast$ \mbox{\hyperlink{ship_8h_a4ddc0cb4d1a72ca7f416db6fc0cb4753}{create\+New\+Ship}} (int identifier, double mapY, double mapX, int screenY, int screenX)
+\item 
+void \mbox{\hyperlink{ship_8h_a512ea7a643481420546e712bf56f1548}{destroy\+Ship}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_ab1005794e216fd546df0fc071fc1e12f}{set\+Health}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, double new\+Health)
+\item 
+double \mbox{\hyperlink{ship_8h_a015706f2a039220397b5b9309c77f4d9}{get\+Health}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_aac4ba9ba4331ebabc679b8ff2a03e3e5}{set\+XPosition}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, double new\+XPosition)
+\item 
+double \mbox{\hyperlink{ship_8h_a516d90366d609a151775b404b358d1f0}{get\+XPosition}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a6066d8dedfc201bde3827988ecdef0dc}{set\+YPosition}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, double new\+YPosition)
+\item 
+double \mbox{\hyperlink{ship_8h_ac80aeb5798adf70da03964aeb8c3a778}{get\+YPosition}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_abb4f3822ac5561545540d6f4f0ace887}{set\+Display\+XPosition}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, int new\+XPosition)
+\item 
+int \mbox{\hyperlink{ship_8h_a7d306bc828ba9765aedeb3d746b37aa7}{get\+Display\+XPosition}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a525161b16b237d81a24f85bf12d9a1ab}{set\+Display\+YPosition}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, int new\+YPosition)
+\item 
+int \mbox{\hyperlink{ship_8h_a306a2b436553fd960de66271bc4085f4}{get\+Display\+YPosition}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a3bf58141f56498aa9c673d68e30b023f}{update\+Display\+Position}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, int screen\+YPos, int screen\+XPos)
+\item 
+void \mbox{\hyperlink{ship_8h_ae2dd82455e9188e58e4f6298a61623a9}{set\+Direction}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, double new\+Direction)
+\item 
+double \mbox{\hyperlink{ship_8h_a98cc4f9ff6278955017ea762bc4f4741}{get\+Direction}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_aa6f9c3c9e4176a4d92756bf3746dc0fc}{set\+XVelocity}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, double new\+Velocity)
+\item 
+double \mbox{\hyperlink{ship_8h_aa1909192454860b150dee296a57d838b}{get\+XVelocity}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a84651e0b50fa4cb99ea2912a209e7e67}{set\+YVelocity}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, double new\+Velocity)
+\item 
+double \mbox{\hyperlink{ship_8h_a550470ed6f66fe0b0dc867904a1225a5}{get\+YVelocity}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+double \mbox{\hyperlink{ship_8h_a8495ab7a598acbd179911b30a83ff5ab}{get\+Speed}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a190084c3937595a545dd85624779ae4f}{inc\+Port\+Turn}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a1300cce825acc6f83c62064af4d83071}{inc\+Starboard\+Turn}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+int \mbox{\hyperlink{ship_8h_ab82b1ddef5ce1b96e3976eff433762da}{get\+Turn\+Level}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a558872fccfdd7aa3fba824fb3520eb1f}{set\+Firing\+Speed}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, double new\+Firing\+Speed)
+\item 
+double \mbox{\hyperlink{ship_8h_a44640177081a4565bd97faafe8556120}{get\+Firing\+Speed}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_aa1bbf51b828a014f13ebadeba4641493}{switch\+Sails}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+int \mbox{\hyperlink{ship_8h_a3cd31e5807d3efa3422fc8e90cc19896}{get\+Sail\+Stat}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a9c505cd011d5f9a466adf620bc097e91}{set\+Sprite\+Path}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, char $\ast$new\+Path)
+\item 
+void \mbox{\hyperlink{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}{set\+Sprite\+Compass}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, int orientation)
+\item 
+char $\ast$ \mbox{\hyperlink{ship_8h_ad374b1e4fadbd2dfa30be389679414b4}{get\+Sprite\+Path}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_ac818ce425060bfaedfc5d9bdd38f0d47}{update\+Sprite}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship)
+\item 
+void \mbox{\hyperlink{ship_8h_a9d2d0041d719e3b699de740467ac3136}{sail}} (\mbox{\hyperlink{structShip}{Ship}} $\ast$local\+Ship, \mbox{\hyperlink{structWind}{Wind}} $\ast$local\+Wind)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ship_8h_a4ddc0cb4d1a72ca7f416db6fc0cb4753}\label{ship_8h_a4ddc0cb4d1a72ca7f416db6fc0cb4753}} 
+\index{ship.h@{ship.h}!createNewShip@{createNewShip}}
+\index{createNewShip@{createNewShip}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{createNewShip()}{createNewShip()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structShip}{Ship}} $\ast$ create\+New\+Ship (\begin{DoxyParamCaption}\item[{int}]{identifier,  }\item[{double}]{mapY,  }\item[{double}]{mapX,  }\item[{int}]{screenY,  }\item[{int}]{screenX }\end{DoxyParamCaption})}
+
+Function to create a new ship. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em identifier} & A unique identifier for the ship. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mapY} & The initial Y position for the ship on the map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mapX} & The initial X position for the ship on the map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em screenY} & The initial Y position for the ship on the camera window. \\
+\hline
+\mbox{\texttt{ in}}  & {\em screenX} & The initial X position for the ship on the camera window. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ship} & A pointer to the new ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a512ea7a643481420546e712bf56f1548}\label{ship_8h_a512ea7a643481420546e712bf56f1548}} 
+\index{ship.h@{ship.h}!destroyShip@{destroyShip}}
+\index{destroyShip@{destroyShip}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{destroyShip()}{destroyShip()}}
+{\footnotesize\ttfamily void destroy\+Ship (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Destroys a ship object. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to be destroyed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a98cc4f9ff6278955017ea762bc4f4741}\label{ship_8h_a98cc4f9ff6278955017ea762bc4f4741}} 
+\index{ship.h@{ship.h}!getDirection@{getDirection}}
+\index{getDirection@{getDirection}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getDirection()}{getDirection()}}
+{\footnotesize\ttfamily double get\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s direction of travel. Ranges between 0 and 2Pi radians. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em direction} & The direction of travel for the ship, in radians. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a7d306bc828ba9765aedeb3d746b37aa7}\label{ship_8h_a7d306bc828ba9765aedeb3d746b37aa7}} 
+\index{ship.h@{ship.h}!getDisplayXPosition@{getDisplayXPosition}}
+\index{getDisplayXPosition@{getDisplayXPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getDisplayXPosition()}{getDisplayXPosition()}}
+{\footnotesize\ttfamily int get\+Display\+XPosition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s X position on the camera window. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em display\+XPosition} & The X position of the ship on the camera window. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a306a2b436553fd960de66271bc4085f4}\label{ship_8h_a306a2b436553fd960de66271bc4085f4}} 
+\index{ship.h@{ship.h}!getDisplayYPosition@{getDisplayYPosition}}
+\index{getDisplayYPosition@{getDisplayYPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getDisplayYPosition()}{getDisplayYPosition()}}
+{\footnotesize\ttfamily int get\+Display\+YPosition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s Y position on the camera window. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em display\+YPosition} & The Y position of the ship on the camera window. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a44640177081a4565bd97faafe8556120}\label{ship_8h_a44640177081a4565bd97faafe8556120}} 
+\index{ship.h@{ship.h}!getFiringSpeed@{getFiringSpeed}}
+\index{getFiringSpeed@{getFiringSpeed}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getFiringSpeed()}{getFiringSpeed()}}
+{\footnotesize\ttfamily double get\+Firing\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s firing rate. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em firing\+Speed} & The rate of fire for the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a015706f2a039220397b5b9309c77f4d9}\label{ship_8h_a015706f2a039220397b5b9309c77f4d9}} 
+\index{ship.h@{ship.h}!getHealth@{getHealth}}
+\index{getHealth@{getHealth}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getHealth()}{getHealth()}}
+{\footnotesize\ttfamily double get\+Health (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets the health of a ship. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em health} & The health level of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a3cd31e5807d3efa3422fc8e90cc19896}\label{ship_8h_a3cd31e5807d3efa3422fc8e90cc19896}} 
+\index{ship.h@{ship.h}!getSailStat@{getSailStat}}
+\index{getSailStat@{getSailStat}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getSailStat()}{getSailStat()}}
+{\footnotesize\ttfamily int get\+Sail\+Stat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s sail status. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em sails\+Open} & Whether the ship\textquotesingle{}s sails are open. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a8495ab7a598acbd179911b30a83ff5ab}\label{ship_8h_a8495ab7a598acbd179911b30a83ff5ab}} 
+\index{ship.h@{ship.h}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily double get\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets the absolute speed of a ship. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em speed} & The absolute speed of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_ad374b1e4fadbd2dfa30be389679414b4}\label{ship_8h_ad374b1e4fadbd2dfa30be389679414b4}} 
+\index{ship.h@{ship.h}!getSpritePath@{getSpritePath}}
+\index{getSpritePath@{getSpritePath}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getSpritePath()}{getSpritePath()}}
+{\footnotesize\ttfamily char $\ast$ get\+Sprite\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s sprite file path. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em sprite\+Path} & The sprite file path of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_ab82b1ddef5ce1b96e3976eff433762da}\label{ship_8h_ab82b1ddef5ce1b96e3976eff433762da}} 
+\index{ship.h@{ship.h}!getTurnLevel@{getTurnLevel}}
+\index{getTurnLevel@{getTurnLevel}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getTurnLevel()}{getTurnLevel()}}
+{\footnotesize\ttfamily int get\+Turn\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets the turn level of a ship. Ranges from -\/3 to 3. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em turn\+Level} & The turn level of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a516d90366d609a151775b404b358d1f0}\label{ship_8h_a516d90366d609a151775b404b358d1f0}} 
+\index{ship.h@{ship.h}!getXPosition@{getXPosition}}
+\index{getXPosition@{getXPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getXPosition()}{getXPosition()}}
+{\footnotesize\ttfamily double get\+XPosition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s X position on the map. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em x\+Position} & The X position of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_aa1909192454860b150dee296a57d838b}\label{ship_8h_aa1909192454860b150dee296a57d838b}} 
+\index{ship.h@{ship.h}!getXVelocity@{getXVelocity}}
+\index{getXVelocity@{getXVelocity}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getXVelocity()}{getXVelocity()}}
+{\footnotesize\ttfamily double get\+XVelocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s X velocity on the map. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em x\+Velocity} & The X velocity of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_ac80aeb5798adf70da03964aeb8c3a778}\label{ship_8h_ac80aeb5798adf70da03964aeb8c3a778}} 
+\index{ship.h@{ship.h}!getYPosition@{getYPosition}}
+\index{getYPosition@{getYPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getYPosition()}{getYPosition()}}
+{\footnotesize\ttfamily double get\+YPosition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s Y position on the map. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em y\+Position} & The Y position of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a550470ed6f66fe0b0dc867904a1225a5}\label{ship_8h_a550470ed6f66fe0b0dc867904a1225a5}} 
+\index{ship.h@{ship.h}!getYVelocity@{getYVelocity}}
+\index{getYVelocity@{getYVelocity}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{getYVelocity()}{getYVelocity()}}
+{\footnotesize\ttfamily double get\+YVelocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Gets a ship\textquotesingle{}s Y velocity on the map. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em y\+Velocity} & The Y velocity of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a190084c3937595a545dd85624779ae4f}\label{ship_8h_a190084c3937595a545dd85624779ae4f}} 
+\index{ship.h@{ship.h}!incPortTurn@{incPortTurn}}
+\index{incPortTurn@{incPortTurn}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{incPortTurn()}{incPortTurn()}}
+{\footnotesize\ttfamily void inc\+Port\+Turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Increases the Port side turn of a ship. This corresponds to an anticlockwise turn. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a1300cce825acc6f83c62064af4d83071}\label{ship_8h_a1300cce825acc6f83c62064af4d83071}} 
+\index{ship.h@{ship.h}!incStarboardTurn@{incStarboardTurn}}
+\index{incStarboardTurn@{incStarboardTurn}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{incStarboardTurn()}{incStarboardTurn()}}
+{\footnotesize\ttfamily void inc\+Starboard\+Turn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Increases the Starboard side turn of a ship. This corresponds to a clockwise turn. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a9d2d0041d719e3b699de740467ac3136}\label{ship_8h_a9d2d0041d719e3b699de740467ac3136}} 
+\index{ship.h@{ship.h}!sail@{sail}}
+\index{sail@{sail}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{sail()}{sail()}}
+{\footnotesize\ttfamily void sail (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{\mbox{\hyperlink{structWind}{Wind}} $\ast$}]{local\+Wind }\end{DoxyParamCaption})}
+
+Simulate the sailing movement of a ship in the wind. 
+\begin{DoxyParams}{Parameters}
+{\em local\+Ship} & The ship to act on. \\
+\hline
+{\em local\+Wind} & The wind acting on the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_ae2dd82455e9188e58e4f6298a61623a9}\label{ship_8h_ae2dd82455e9188e58e4f6298a61623a9}} 
+\index{ship.h@{ship.h}!setDirection@{setDirection}}
+\index{setDirection@{setDirection}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setDirection()}{setDirection()}}
+{\footnotesize\ttfamily void set\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{double}]{new\+Direction }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s direction of travel. Ranges between 0 and 2Pi radians. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+Direction} & The new direction for the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_abb4f3822ac5561545540d6f4f0ace887}\label{ship_8h_abb4f3822ac5561545540d6f4f0ace887}} 
+\index{ship.h@{ship.h}!setDisplayXPosition@{setDisplayXPosition}}
+\index{setDisplayXPosition@{setDisplayXPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setDisplayXPosition()}{setDisplayXPosition()}}
+{\footnotesize\ttfamily void set\+Display\+XPosition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{int}]{new\+XPosition }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s X position on the camera window. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+XPosition} & The new X position to set on the camera window. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a525161b16b237d81a24f85bf12d9a1ab}\label{ship_8h_a525161b16b237d81a24f85bf12d9a1ab}} 
+\index{ship.h@{ship.h}!setDisplayYPosition@{setDisplayYPosition}}
+\index{setDisplayYPosition@{setDisplayYPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setDisplayYPosition()}{setDisplayYPosition()}}
+{\footnotesize\ttfamily void set\+Display\+YPosition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{int}]{new\+YPosition }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s Y position on the camera window. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+YPosition} & The new Y position to set on the camera window. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a558872fccfdd7aa3fba824fb3520eb1f}\label{ship_8h_a558872fccfdd7aa3fba824fb3520eb1f}} 
+\index{ship.h@{ship.h}!setFiringSpeed@{setFiringSpeed}}
+\index{setFiringSpeed@{setFiringSpeed}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setFiringSpeed()}{setFiringSpeed()}}
+{\footnotesize\ttfamily void set\+Firing\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{double}]{new\+Firing\+Speed }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s firing rate. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+Firing\+Speed} & The new rate at which to fire. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_ab1005794e216fd546df0fc071fc1e12f}\label{ship_8h_ab1005794e216fd546df0fc071fc1e12f}} 
+\index{ship.h@{ship.h}!setHealth@{setHealth}}
+\index{setHealth@{setHealth}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setHealth()}{setHealth()}}
+{\footnotesize\ttfamily void set\+Health (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{double}]{new\+Health }\end{DoxyParamCaption})}
+
+Sets the health of a ship. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+Health} & The new health level to set for the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}\label{ship_8h_ab65b23e2c2075f2221248ba80c955bb8}} 
+\index{ship.h@{ship.h}!setSpriteCompass@{setSpriteCompass}}
+\index{setSpriteCompass@{setSpriteCompass}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setSpriteCompass()}{setSpriteCompass()}}
+{\footnotesize\ttfamily void set\+Sprite\+Compass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{int}]{orientation }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s sprite based on its direction of travel. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em orientation} & The orientation level of the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a9c505cd011d5f9a466adf620bc097e91}\label{ship_8h_a9c505cd011d5f9a466adf620bc097e91}} 
+\index{ship.h@{ship.h}!setSpritePath@{setSpritePath}}
+\index{setSpritePath@{setSpritePath}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setSpritePath()}{setSpritePath()}}
+{\footnotesize\ttfamily void set\+Sprite\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{char $\ast$}]{new\+Path }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s sprite file path. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+Path} & The new sprite file path to set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_aac4ba9ba4331ebabc679b8ff2a03e3e5}\label{ship_8h_aac4ba9ba4331ebabc679b8ff2a03e3e5}} 
+\index{ship.h@{ship.h}!setXPosition@{setXPosition}}
+\index{setXPosition@{setXPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setXPosition()}{setXPosition()}}
+{\footnotesize\ttfamily void set\+XPosition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{double}]{new\+XPosition }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s X position on the map. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+XPosition} & The new X position to set for the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_aa6f9c3c9e4176a4d92756bf3746dc0fc}\label{ship_8h_aa6f9c3c9e4176a4d92756bf3746dc0fc}} 
+\index{ship.h@{ship.h}!setXVelocity@{setXVelocity}}
+\index{setXVelocity@{setXVelocity}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setXVelocity()}{setXVelocity()}}
+{\footnotesize\ttfamily void set\+XVelocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{double}]{new\+Velocity }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s X velocity on the map. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+Velocity} & The new X velocity to set for the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a6066d8dedfc201bde3827988ecdef0dc}\label{ship_8h_a6066d8dedfc201bde3827988ecdef0dc}} 
+\index{ship.h@{ship.h}!setYPosition@{setYPosition}}
+\index{setYPosition@{setYPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setYPosition()}{setYPosition()}}
+{\footnotesize\ttfamily void set\+YPosition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{double}]{new\+YPosition }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s Y position on the map. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+YPosition} & The new Y position to set for the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a84651e0b50fa4cb99ea2912a209e7e67}\label{ship_8h_a84651e0b50fa4cb99ea2912a209e7e67}} 
+\index{ship.h@{ship.h}!setYVelocity@{setYVelocity}}
+\index{setYVelocity@{setYVelocity}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{setYVelocity()}{setYVelocity()}}
+{\footnotesize\ttfamily void set\+YVelocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{double}]{new\+Velocity }\end{DoxyParamCaption})}
+
+Sets a ship\textquotesingle{}s Y velocity on the map. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+Velocity} & The new Y velocity to set for the ship. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_aa1bbf51b828a014f13ebadeba4641493}\label{ship_8h_aa1bbf51b828a014f13ebadeba4641493}} 
+\index{ship.h@{ship.h}!switchSails@{switchSails}}
+\index{switchSails@{switchSails}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{switchSails()}{switchSails()}}
+{\footnotesize\ttfamily void switch\+Sails (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Toggles a ship\textquotesingle{}s sails. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_a3bf58141f56498aa9c673d68e30b023f}\label{ship_8h_a3bf58141f56498aa9c673d68e30b023f}} 
+\index{ship.h@{ship.h}!updateDisplayPosition@{updateDisplayPosition}}
+\index{updateDisplayPosition@{updateDisplayPosition}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{updateDisplayPosition()}{updateDisplayPosition()}}
+{\footnotesize\ttfamily void update\+Display\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship,  }\item[{int}]{screen\+YPos,  }\item[{int}]{screen\+XPos }\end{DoxyParamCaption})}
+
+Sets the display position of a ship based on where the camera window has visibility. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em screen\+YPos} & The Y position of the camera on the map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em screen\+XPos} & The X position of the camera on the map. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ship_8h_ac818ce425060bfaedfc5d9bdd38f0d47}\label{ship_8h_ac818ce425060bfaedfc5d9bdd38f0d47}} 
+\index{ship.h@{ship.h}!updateSprite@{updateSprite}}
+\index{updateSprite@{updateSprite}!ship.h@{ship.h}}
+\doxysubsubsection{\texorpdfstring{updateSprite()}{updateSprite()}}
+{\footnotesize\ttfamily void update\+Sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structShip}{Ship}} $\ast$}]{local\+Ship }\end{DoxyParamCaption})}
+
+Updates a ship\textquotesingle{}s sprite based on its direction of travel. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Ship} & The ship to act on. \\
+\hline
+\end{DoxyParams}

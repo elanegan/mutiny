@@ -1,0 +1,96 @@
+\hypertarget{wind_8h}{}\doxysection{wind.\+h File Reference}
+\label{wind_8h}\index{wind.h@{wind.h}}
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWind}{Wind}}
+\begin{DoxyCompactList}\small\item\em Data type for wind. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{wind_8h_aac3553b3932cbfeeac4526ce7ca0336b}\label{wind_8h_aac3553b3932cbfeeac4526ce7ca0336b}} 
+\#define {\bfseries SPEED}~1.\+5
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structWind}{Wind}} speed typical maximum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{wind_8h_a218c24ea2e844ae06921150b554f084b}\label{wind_8h_a218c24ea2e844ae06921150b554f084b}} 
+typedef struct \mbox{\hyperlink{structWind}{Wind}} {\bfseries Wind}
+\begin{DoxyCompactList}\small\item\em Data type for wind. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structWind}{Wind}} $\ast$ \mbox{\hyperlink{wind_8h_a85624baa6fae79b7488c9be0a81fcd1c}{create\+New\+Wind}} ()
+\item 
+void \mbox{\hyperlink{wind_8h_aa3df758bac23c85567f03bbe1a95f8d8}{destroy\+Wind}} (\mbox{\hyperlink{structWind}{Wind}} $\ast$local\+Wind)
+\item 
+double \mbox{\hyperlink{wind_8h_ac9d76ad290a82bebcb0dce884a0a2c3c}{get\+Wind\+Direction}} (\mbox{\hyperlink{structWind}{Wind}} $\ast$local\+Wind)
+\item 
+double \mbox{\hyperlink{wind_8h_a4f5632e291e3ba6a865c7cf5636c9e24}{get\+Wind\+Speed}} (\mbox{\hyperlink{structWind}{Wind}} $\ast$local\+Wind)
+\item 
+void \mbox{\hyperlink{wind_8h_ada731fdf4d5481ce7b39a7441da8c0f3}{update\+Wind}} (\mbox{\hyperlink{structWind}{Wind}} $\ast$local\+Wind)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{wind_8h_a85624baa6fae79b7488c9be0a81fcd1c}\label{wind_8h_a85624baa6fae79b7488c9be0a81fcd1c}} 
+\index{wind.h@{wind.h}!createNewWind@{createNewWind}}
+\index{createNewWind@{createNewWind}!wind.h@{wind.h}}
+\doxysubsubsection{\texorpdfstring{createNewWind()}{createNewWind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structWind}{Wind}} $\ast$ create\+New\+Wind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Function to create new wind. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em wind} & A pointer to a new wind type. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{wind_8h_aa3df758bac23c85567f03bbe1a95f8d8}\label{wind_8h_aa3df758bac23c85567f03bbe1a95f8d8}} 
+\index{wind.h@{wind.h}!destroyWind@{destroyWind}}
+\index{destroyWind@{destroyWind}!wind.h@{wind.h}}
+\doxysubsubsection{\texorpdfstring{destroyWind()}{destroyWind()}}
+{\footnotesize\ttfamily void destroy\+Wind (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWind}{Wind}} $\ast$}]{local\+Wind }\end{DoxyParamCaption})}
+
+Destroys a wind object. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Wind} & The wind to destroy. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{wind_8h_ac9d76ad290a82bebcb0dce884a0a2c3c}\label{wind_8h_ac9d76ad290a82bebcb0dce884a0a2c3c}} 
+\index{wind.h@{wind.h}!getWindDirection@{getWindDirection}}
+\index{getWindDirection@{getWindDirection}!wind.h@{wind.h}}
+\doxysubsubsection{\texorpdfstring{getWindDirection()}{getWindDirection()}}
+{\footnotesize\ttfamily double get\+Wind\+Direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWind}{Wind}} $\ast$}]{local\+Wind }\end{DoxyParamCaption})}
+
+Gets the direction of the wind. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Wind} & The wind to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em direction} & The direction of the wind in radians. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{wind_8h_a4f5632e291e3ba6a865c7cf5636c9e24}\label{wind_8h_a4f5632e291e3ba6a865c7cf5636c9e24}} 
+\index{wind.h@{wind.h}!getWindSpeed@{getWindSpeed}}
+\index{getWindSpeed@{getWindSpeed}!wind.h@{wind.h}}
+\doxysubsubsection{\texorpdfstring{getWindSpeed()}{getWindSpeed()}}
+{\footnotesize\ttfamily double get\+Wind\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWind}{Wind}} $\ast$}]{local\+Wind }\end{DoxyParamCaption})}
+
+Gets the absolute speed of the wind. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Wind} & The wind to act on. \\
+\hline
+\mbox{\texttt{ out}}  & {\em speed} & The absolute speed of the wind. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{wind_8h_ada731fdf4d5481ce7b39a7441da8c0f3}\label{wind_8h_ada731fdf4d5481ce7b39a7441da8c0f3}} 
+\index{wind.h@{wind.h}!updateWind@{updateWind}}
+\index{updateWind@{updateWind}!wind.h@{wind.h}}
+\doxysubsubsection{\texorpdfstring{updateWind()}{updateWind()}}
+{\footnotesize\ttfamily void update\+Wind (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWind}{Wind}} $\ast$}]{local\+Wind }\end{DoxyParamCaption})}
+
+Update function to vary direction and speed of wind. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em local\+Wind} & The wind to act on. \\
+\hline
+\end{DoxyParams}
